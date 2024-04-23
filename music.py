@@ -1,24 +1,28 @@
 import pygame
 from pygame import mixer
 import os
+from pytube import YouTube
 
 
 class Music:
     def __init__(self):
         mixer.init()
         self.music = mixer.music
-        self.song_collection = Song_Collection()
+        self.song_collection = SongCollection()
         self.path = self.song_collection.musicPath[0]
 
         self.music.set_endevent(pygame.USEREVENT)
 
         self.music_end = pygame.USEREVENT + 1  # set event
 
+
     def load_music(self):
         self.music.load(self.path)
 
+
     def play_music(self):
         self.music.play()
+
 
     def stop_music(self):
         end_event_type = self.music.get_endevent()
@@ -26,20 +30,66 @@ class Music:
         print("stopped")
         self.music.stop()
 
+
     def change_music(self, num):
         self.path = self.song_collection.musicPath[num]
 
 
-class Song_Collection:
+class SongCollection:
     def __init__(self):
         self.folder = '.\\Music'  # Location of stores songs
         self.musicPath = []  # Use this to play songs
         self.create_list()
 
+
     def create_list(self):
         song_path = os.listdir(self.folder)
         for i in song_path:
             self.musicPath.append(f'{self.folder}' + '\\' + i)
+
+
+class DownloadSongs:
+    @staticmethod
+    def download(link):
+        yt = YouTube(link)
+        if "youtube" not in link:
+            return  # wrong link return nothing
+        audio = yt.streams.filter(only_audio=True).first()
+        out_file = audio.download(output_path="Music")
+        base, ext = os.path.splitext(out_file)
+        new_mp3_file = base + ".mp3"
+        os.rename(out_file, new_mp3_file)
+
+
+pygame.init()
+MUSIC_END = pygame.USEREVENT + 1
+pygame.mixer.music.set_endevent(MUSIC_END)
+mixer.init()
+
+musicc = mixer.music
+musicc.load(".\\Music\\testSound.mp3")
+musicc.play()
+
+while True:
+    for event in pygame.event.get():
+        if pygame.mixer.music.get_endevent() == MUSIC_END and not pygame.mixer.music.get_busy():
+            musicc.stop()
+            print("Music stopped")
+
+    next_song = input("Next song? Y/N")
+
+    if next_song == "Y":
+        musicc.stop()
+        musicc.load(".\\Music\\Bosun Bill.mp3")
+        musicc.play()
+
+
+a = input("wait: ")
+if a:
+    pass
+
+pygame.mixer.music.get_endevent()
+print("Test if music ends")
 
 
 # TESTING
@@ -87,29 +137,3 @@ class Song_Collection:
 # Add any code you want to execute when the music ends
 
 # pygame.quit()
-
-
-from pytube import YouTube
-
-yt = YouTube("https://www.youtube.com/watch?v=gWkXtiveAi8")
-
-sound = yt.streams.filter(only_audio=True).first()
-
-out_file = sound.download(output_path="Music")
-
-base, ext = os.path.splitext(out_file)
-new_mp3_file = base + ".mp3"
-os.rename(out_file, new_mp3_file)
-
-wait = input("wait")
-mixer.init()
-
-
-music = mixer.music
-music.load()
-music.play()
-
-
-wait = input("wait ")
-os.remove(f".\\Music\\All Pings Sounds.mp3")
-wait = input("wait ")
