@@ -6,6 +6,7 @@ from pytube import YouTube
 
 class Music:
     def __init__(self):
+        # TODO add pygame.init()
         mixer.init()
         self.music = mixer.music
         self.song_collection = SongCollection()
@@ -15,21 +16,17 @@ class Music:
 
         self.music_end = pygame.USEREVENT + 1  # set event
 
-
     def load_music(self):
         self.music.load(self.path)
 
-
     def play_music(self):
         self.music.play()
-
 
     def stop_music(self):
         end_event_type = self.music.get_endevent()
 
         print("stopped")
         self.music.stop()
-
 
     def change_music(self, num):
         self.path = self.song_collection.musicPath[num]
@@ -40,7 +37,6 @@ class SongCollection:
         self.folder = '.\\Music'  # Location of stores songs
         self.musicPath = []  # Use this to play songs
         self.create_list()
-
 
     def create_list(self):
         song_path = os.listdir(self.folder)
@@ -83,14 +79,12 @@ while True:
         musicc.load(".\\Music\\Bosun Bill.mp3")
         musicc.play()
 
-
 a = input("wait: ")
 if a:
     pass
 
 pygame.mixer.music.get_endevent()
 print("Test if music ends")
-
 
 # TESTING
 # music = Music()
