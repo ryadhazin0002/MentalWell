@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'music.ui'
+# Form implementation generated from reading ui file 'resorces.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -40,13 +40,13 @@ class Ui_inspiring(object):
         font.setWeight(50)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setGeometry(QtCore.QRect(50, 280, 161, 31))
+        self.back = QtWidgets.QPushButton(self.frame)
+        self.back.setGeometry(QtCore.QRect(50, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton {\n"
+        self.back.setFont(font)
+        self.back.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -56,14 +56,14 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_2.setGeometry(QtCore.QRect(230, 280, 161, 31))
+        self.back.setObjectName("back")
+        self.next = QtWidgets.QPushButton(self.frame)
+        self.next.setGeometry(QtCore.QRect(230, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
+        self.next.setFont(font)
+        self.next.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -73,14 +73,14 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.MainMenu = QtWidgets.QPushButton(self.frame)
-        self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
+        self.next.setObjectName("next")
+        self.mainMenu = QtWidgets.QPushButton(self.frame)
+        self.mainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.MainMenu.setFont(font)
-        self.MainMenu.setStyleSheet("QPushButton {\n"
+        self.mainMenu.setFont(font)
+        self.mainMenu.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -90,12 +90,12 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.MainMenu.setObjectName("MainMenu")
-        self.music = QtWidgets.QLabel(self.frame)
-        self.music.setGeometry(QtCore.QRect(70, 70, 471, 191))
-        self.music.setStyleSheet("background-color: rgb(242, 217, 170);")
-        self.music.setText("")
-        self.music.setObjectName("music")
+        self.mainMenu.setObjectName("mainMenu")
+        self.resorces = QtWidgets.QLabel(self.frame)
+        self.resorces.setGeometry(QtCore.QRect(70, 70, 471, 191))
+        self.resorces.setStyleSheet("background-color: rgb(242, 217, 170);")
+        self.resorces.setText("")
+        self.resorces.setObjectName("resorces")
         self.author = QtWidgets.QLabel(self.frame)
         self.author.setGeometry(QtCore.QRect(410, 220, 121, 21))
         self.author.setStyleSheet("background-color: rgb(242, 217, 170);")
@@ -108,10 +108,10 @@ class Ui_inspiring(object):
     def retranslateUi(self, inspiring):
         _translate = QtCore.QCoreApplication.translate
         inspiring.setWindowTitle(_translate("inspiring", "Form"))
-        self.label_2.setText(_translate("inspiring", "A list of Music"))
-        self.pushButton.setText(_translate("inspiring", "Back"))
-        self.pushButton_2.setText(_translate("inspiring", "Next"))
-        self.MainMenu.setText(_translate("inspiring", "Main Menu"))
+        self.label_2.setText(_translate("inspiring", "External Resorces"))
+        self.back.setText(_translate("inspiring", "Back"))
+        self.next.setText(_translate("inspiring", "Next"))
+        self.mainMenu.setText(_translate("inspiring", "Main Menu"))
 
 
 if __name__ == "__main__":
