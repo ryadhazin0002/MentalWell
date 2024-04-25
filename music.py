@@ -6,21 +6,28 @@ from pytube import YouTube
 
 class Music:
     def __init__(self):
-        # TODO add pygame.init()
+        pygame.init()
         mixer.init()
         self.music = mixer.music
         self.song_collection = SongCollection()
-        self.path = self.song_collection.musicPath[0]
-
-        self.music.set_endevent(pygame.USEREVENT)
+        self.song_tracker = 0
+        self.number_of_songs = len(self.song_collection.musicPath)
+        self.current_song = self.song_collection.musicPath[self.song_tracker]
 
         self.music_end = pygame.USEREVENT + 1  # set event
 
-    def load_music(self):
-        self.music.load(self.path)
-
-    def play_music(self):
+    def play_music(self):  # run to initiate song
+        self.music.load(self.current_song)
         self.music.play()
+
+    def is_pause_music(self):  # returns true if music is not playing otherwise false
+        return True if self.music.get_busy() is False else True
+
+    def music_pause(self):
+        self.music.pause()
+
+    def music_unpause(self):
+        self.music.unpause()
 
     def stop_music(self):
         end_event_type = self.music.get_endevent()
@@ -28,9 +35,18 @@ class Music:
         print("stopped")
         self.music.stop()
 
-    def change_music(self, num):
-        self.path = self.song_collection.musicPath[num]
+    def change_music(self, num):  # number on the list
+        self.song_tracker = num
+        self.current_song = self.song_collection.musicPath[self.song_tracker]
 
+    def next_song(self, boolean):
+        if boolean is True:
+            self.current_song
+            self.song_tracker += 1
+            if
+
+    def prev_song(self, boolean):
+        pass
 
 class SongCollection:
     def __init__(self):
