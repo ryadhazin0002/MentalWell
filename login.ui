@@ -38,7 +38,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 170, 255);</string>
+   <string notr="true">background-color: rgb(47, 163, 209);</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -53,7 +53,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../../OneDrive/Skrivbord/new_pic.png</pixmap>
+    <pixmap>images/new_pic.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -65,10 +65,10 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="signUp">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>330</x>
      <y>550</y>
      <width>311</width>
      <height>31</height>
@@ -82,7 +82,16 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}</string>
    </property>
    <property name="text">
     <string>Sign up</string>
@@ -100,7 +109,7 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>340</x>
      <y>520</y>
      <width>311</width>
      <height>20</height>
@@ -120,7 +129,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>340</x>
      <y>590</y>
      <width>311</width>
      <height>16</height>
@@ -135,10 +144,10 @@
     <string>Or</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="guest">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>330</x>
      <y>620</y>
      <width>311</width>
      <height>31</height>
@@ -150,7 +159,16 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}</string>
    </property>
    <property name="text">
     <string>Continue as a Guest</string>
@@ -166,7 +184,9 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(61, 220, 255);</string>
+    <string notr="true">background-color: rgb(61, 220, 255);
+    border-radius: 10px;
+</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -174,7 +194,7 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="userName">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -193,7 +213,7 @@ QLineEdit{
      <string>Enter username</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="password">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -215,7 +235,7 @@ QLineEdit{
      <string>Enter password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="login">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -232,7 +252,16 @@ QLineEdit{
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}</string>
     </property>
     <property name="text">
      <string>Login</string>

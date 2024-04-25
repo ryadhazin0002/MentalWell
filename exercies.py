@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'music.ui'
+# Form implementation generated from reading ui file 'exercies.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -19,34 +19,34 @@ class Ui_inspiring(object):
         inspiring.setMaximumSize(QtCore.QSize(1000, 800))
         inspiring.setStyleSheet("background-color: rgb(47, 163, 209);")
         self.label = QtWidgets.QLabel(inspiring)
-        self.label.setGeometry(QtCore.QRect(370, 70, 221, 191))
+        self.label.setGeometry(QtCore.QRect(380, 60, 221, 191))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("images/logo.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
-        self.frame = QtWidgets.QFrame(inspiring)
-        self.frame.setGeometry(QtCore.QRect(170, 320, 611, 331))
-        self.frame.setStyleSheet("background-color: rgb(61, 220, 255);\n"
+        self.stress = QtWidgets.QFrame(inspiring)
+        self.stress.setGeometry(QtCore.QRect(160, 300, 661, 321))
+        self.stress.setStyleSheet("background-color: rgb(61, 220, 255);\n"
 "border-radius: 10px;")
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.label_2 = QtWidgets.QLabel(self.frame)
-        self.label_2.setGeometry(QtCore.QRect(80, 40, 451, 21))
+        self.stress.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.stress.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.stress.setObjectName("stress")
+        self.label_2 = QtWidgets.QLabel(self.stress)
+        self.label_2.setGeometry(QtCore.QRect(40, 50, 451, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setGeometry(QtCore.QRect(50, 280, 161, 31))
+        self.back = QtWidgets.QPushButton(self.stress)
+        self.back.setGeometry(QtCore.QRect(40, 260, 181, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton {\n"
+        self.back.setFont(font)
+        self.back.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -56,14 +56,14 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_2.setGeometry(QtCore.QRect(230, 280, 161, 31))
+        self.back.setObjectName("back")
+        self.next = QtWidgets.QPushButton(self.stress)
+        self.next.setGeometry(QtCore.QRect(230, 260, 191, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
+        self.next.setFont(font)
+        self.next.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -73,9 +73,9 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.MainMenu = QtWidgets.QPushButton(self.frame)
-        self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
+        self.next.setObjectName("next")
+        self.MainMenu = QtWidgets.QPushButton(self.stress)
+        self.MainMenu.setGeometry(QtCore.QRect(430, 260, 191, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -91,16 +91,16 @@ class Ui_inspiring(object):
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
         self.MainMenu.setObjectName("MainMenu")
-        self.music = QtWidgets.QLabel(self.frame)
-        self.music.setGeometry(QtCore.QRect(70, 70, 471, 191))
-        self.music.setStyleSheet("background-color: rgb(242, 217, 170);")
-        self.music.setText("")
-        self.music.setObjectName("music")
-        self.author = QtWidgets.QLabel(self.frame)
-        self.author.setGeometry(QtCore.QRect(410, 220, 121, 21))
-        self.author.setStyleSheet("background-color: rgb(242, 217, 170);")
-        self.author.setText("")
-        self.author.setObjectName("author")
+        self.image = QtWidgets.QLabel(self.stress)
+        self.image.setGeometry(QtCore.QRect(420, 80, 201, 161))
+        self.image.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.image.setText("")
+        self.image.setObjectName("image")
+        self.exercies = QtWidgets.QLabel(self.stress)
+        self.exercies.setGeometry(QtCore.QRect(30, 80, 381, 161))
+        self.exercies.setStyleSheet("background-color: rgb(242, 217, 170);")
+        self.exercies.setText("")
+        self.exercies.setObjectName("exercies")
 
         self.retranslateUi(inspiring)
         QtCore.QMetaObject.connectSlotsByName(inspiring)
@@ -108,9 +108,9 @@ class Ui_inspiring(object):
     def retranslateUi(self, inspiring):
         _translate = QtCore.QCoreApplication.translate
         inspiring.setWindowTitle(_translate("inspiring", "Form"))
-        self.label_2.setText(_translate("inspiring", "A list of Music"))
-        self.pushButton.setText(_translate("inspiring", "Back"))
-        self.pushButton_2.setText(_translate("inspiring", "Next"))
+        self.label_2.setText(_translate("inspiring", "Stress Relief Exercies"))
+        self.back.setText(_translate("inspiring", "Back"))
+        self.next.setText(_translate("inspiring", "Next"))
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
 
 

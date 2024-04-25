@@ -29,7 +29,10 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 255);</string>
+   <string notr="true">background-color: rgb(47, 163, 209);</string>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -45,7 +48,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../OneDrive/Skrivbord/new_pic.png</pixmap>
+     <pixmap>images/new_pic.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -66,7 +69,10 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="inspiring">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -78,23 +84,44 @@
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+
+</string>
      </property>
      <property name="text">
       <string>Inspiring Quotes</string>
      </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
      <property name="default">
       <bool>false</bool>
      </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="stress">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -106,20 +133,34 @@ border: 2px solid #a0a0a0;</string>
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>Stress Relief Exercise</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="resorces">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -131,20 +172,34 @@ border: 2px solid #a0a0a0;</string>
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>External Resorces</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="music">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -156,20 +211,34 @@ border: 2px solid #a0a0a0;</string>
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>A list of Music</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="support">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -181,20 +250,34 @@ border: 2px solid #a0a0a0;</string>
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>Support</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_6">
+    <widget class="QPushButton" name="signOut">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -206,14 +289,25 @@ border: 2px solid #a0a0a0;</string>
      <property name="font">
       <font>
        <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-border: 2px solid #a0a0a0;</string>
+      <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>Sign out</string>
