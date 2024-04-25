@@ -29,7 +29,7 @@ class Ui_Form(object):
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(370, 60, 231, 201))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("images/new_pic.png"))
+        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
         self.label.setScaledContents(True)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setWordWrap(False)

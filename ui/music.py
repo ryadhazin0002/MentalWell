@@ -9,9 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 import src.music
-from src.music import Music
 
 music_player = src.music.Music()
 
@@ -26,7 +24,7 @@ class Ui_inspiring(object):
         self.label.setGeometry(QtCore.QRect(370, 70, 221, 191))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("images/new_pic.png"))
+        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.frame = QtWidgets.QFrame(inspiring)
@@ -161,7 +159,7 @@ class Ui_inspiring(object):
         self.list_label.setObjectName("list_label")
 
         self.retranslateUi(inspiring)
-        self.buttons()
+        self.button_functions()
         QtCore.QMetaObject.connectSlotsByName(inspiring)
 
     def retranslateUi(self, inspiring):
@@ -176,7 +174,7 @@ class Ui_inspiring(object):
         self.next_song_button.setText(_translate("inspiring", "▷|"))
 
 
-    def buttons(self):
+    def button_functions(self):
         self.play_button.clicked.connect(music_player.play_logic)
         self.next_song_button.clicked.connect(music_player.next_song)
         self.prev_song_button.clicked.connect(music_player.prev_song)
