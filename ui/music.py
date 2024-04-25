@@ -10,6 +10,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import src.music
+from src.music import Music
+
+music_player = src.music.Music()
 
 class Ui_inspiring(object):
     def setupUi(self, inspiring):
@@ -157,6 +161,7 @@ class Ui_inspiring(object):
         self.list_label.setObjectName("list_label")
 
         self.retranslateUi(inspiring)
+        self.buttons()
         QtCore.QMetaObject.connectSlotsByName(inspiring)
 
     def retranslateUi(self, inspiring):
@@ -169,6 +174,13 @@ class Ui_inspiring(object):
         self.prev_song_button.setText(_translate("inspiring", "|◁"))
         self.play_button.setText(_translate("inspiring", "▶ ılıılııl"))
         self.next_song_button.setText(_translate("inspiring", "▷|"))
+
+
+    def buttons(self):
+        self.play_button.clicked.connect(music_player.play_logic)
+        self.next_song_button.clicked.connect(music_player.next_song)
+        self.prev_song_button.clicked.connect(music_player.prev_song)
+
 
 
 if __name__ == "__main__":

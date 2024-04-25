@@ -1,8 +1,6 @@
-import itertools
-
 import pygame
-from pygame import mixer
 import os
+from pygame import mixer
 from pytube import YouTube
 
 
@@ -17,7 +15,6 @@ class Music:
         self.song_amount = len(self.song_collection.musicPath)
         self.current_song = self.song_collection.musicPath[self.song_tracker]
         self.END_OF_SONG = pygame.USEREVENT + 1
-
 
     def play_logic(self):  # initial button play
         match self.play_button:
@@ -37,10 +34,8 @@ class Music:
     def stop_song(self):  # stop when click on main menu
         self.music.stop()
 
-
     def pause_song(self):  # pause on the play
         self.music.pause()
-
 
     def unpause_song(self):  # play on the play
         self.music.unpause()
@@ -50,26 +45,21 @@ class Music:
         self.music.load(self.current_song)
         self.current_song = self.song_collection.musicPath[self.song_tracker]
 
-
     def next_song(self):  # DONE
         self.song_tracker += 1
         self.update_song()
 
-
     def prev_song(self):  # DONE
         self.song_tracker -= 1
         self.update_song()
-
 
     def update_song(self):  # DONE helper method
         self.song_tracker %= self.song_amount
         self.current_song = self.song_collection.musicPath[self.song_tracker]
         self.play_song()
 
-
     def set_queue(self):  # queue should only be set 1 at the time?
         self.music.set_endevent(self.END_OF_SONG)
-
 
     def get_queue(self):
         for _ in pygame.event.get():
@@ -80,11 +70,9 @@ class Music:
 
 class SongCollection:
     def __init__(self):
-        self.folder = '.\\Music'  # Location of stores songs
+        self.folder = '..\\Music'  # Location of stores songs
         self.musicPath = []  # Use this to play songs
-        itertools.cycle(self.musicPath)  # cycle to beginning at the end of list
         self.create_list()
-
 
     def create_list(self):
         song_path = os.listdir(self.folder)
@@ -106,7 +94,6 @@ class DownloadSongs:  # Youtube change broke the library
         new_mp3_file = base + ".MP3"
         os.rename(out_file, new_mp3_file)
 
-
     @staticmethod
     def provide_links():  # Automate download MP3 files from youtube
         while True:
@@ -115,6 +102,3 @@ class DownloadSongs:  # Youtube change broke the library
                 break
             else:
                 DownloadSongs.download(song_link)
-
-
-
