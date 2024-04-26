@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from src.quotes import Quote, QuoteFunctions
+from quotes import Quote, QuoteFunctions
 
 
 class Ui_inspiring(object):
