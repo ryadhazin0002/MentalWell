@@ -9,9 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import src.music
+import src.music    # my code
 
-music_player = src.music.Music()
+music_player = src.music.Music() # my code
 
 class Ui_inspiring(object):
     def setupUi(self, inspiring):
@@ -174,7 +174,7 @@ class Ui_inspiring(object):
         self.next_song_button.setText(_translate("inspiring", "▷|"))
 
 
-    def button_functions(self):
+    def button_functions(self):     # My code
         self.play_button.clicked.connect(music_player.play_logic)
         self.next_song_button.clicked.connect(music_player.next_song)
         self.prev_song_button.clicked.connect(music_player.prev_song)
