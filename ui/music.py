@@ -159,7 +159,7 @@ class Ui_inspiring(object):
         self.list_label.setObjectName("list_label")
 
         self.retranslateUi(inspiring)
-        self.button_functions()
+        self.button_functions() # my code
         QtCore.QMetaObject.connectSlotsByName(inspiring)
 
     def retranslateUi(self, inspiring):
