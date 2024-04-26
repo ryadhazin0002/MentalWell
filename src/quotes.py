@@ -1,5 +1,5 @@
 
-from connect_to_database import DatabaseManager
+from src.connect_to_database import DatabaseManager
 
 
 class Quote:
