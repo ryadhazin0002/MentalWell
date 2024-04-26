@@ -182,7 +182,7 @@ QPushButton:pressed {
      <string>Main Menu</string>
     </property>
    </widget>
-   <widget class="QLabel" name="quotes">
+   <widget class="QLabel" name="Background">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -209,6 +209,22 @@ QPushButton:pressed {
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(242, 217, 170);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="quotes">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>371</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 255);</string>
     </property>
     <property name="text">
      <string/>
