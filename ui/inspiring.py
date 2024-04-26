@@ -62,14 +62,14 @@ class Ui_inspiring(object):
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
         self.back.setObjectName("back")
-        self.next = QtWidgets.QPushButton(self.frame)
-        self.next.clicked.connect(self.on_next_pressed) # my code
-        self.next.setGeometry(QtCore.QRect(230, 280, 161, 31))
+        self.next_button = QtWidgets.QPushButton(self.frame)
+        self.next_button.clicked.connect(self.on_next_pressed) # my code
+        self.next_button.setGeometry(QtCore.QRect(230, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.next.setFont(font)
-        self.next.setStyleSheet("QPushButton {\n"
+        self.next_button.setFont(font)
+        self.next_button.setStyleSheet("QPushButton {\n"
 "    background-color: #fdfcfa;\n"
 "    border: 1px solid #0c253b;\n"
 "    border-radius: 10px;\n"
@@ -79,7 +79,7 @@ class Ui_inspiring(object):
 "    /* Add styling for when the button is pressed */\n"
 "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
 "}")
-        self.next.setObjectName("next")
+        self.next_button.setObjectName("next")
         self.MainMenu = QtWidgets.QPushButton(self.frame)
         self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
         font = QtGui.QFont()
@@ -122,7 +122,7 @@ class Ui_inspiring(object):
         inspiring.setWindowTitle(_translate("inspiring", "Form"))
         self.label_2.setText(_translate("inspiring", "Inspiring Quotes"))
         self.back.setText(_translate("inspiring", "Back"))
-        self.next.setText(_translate("inspiring", "Next"))
+        self.next_button.setText(_translate("inspiring", "Next"))
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
 
     def set_quote(self, quote: Quote): # my code
