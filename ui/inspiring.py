@@ -9,9 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import sys # my code
+from src.quotes import Quote, QuoteFunctions # my code
 
 class Ui_inspiring(object):
+    def __init__(self) -> None: # my code
+        self.functions = QuoteFunctions()
+
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
         inspiring.resize(1000, 800)
@@ -41,6 +45,7 @@ class Ui_inspiring(object):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.back = QtWidgets.QPushButton(self.frame)
+        self.back.clicked.connect(self.on_back_pressed) # my code
         self.back.setGeometry(QtCore.QRect(50, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
@@ -58,6 +63,7 @@ class Ui_inspiring(object):
 "}")
         self.back.setObjectName("back")
         self.next = QtWidgets.QPushButton(self.frame)
+        self.next.clicked.connect(self.on_next_pressed) # my code
         self.next.setGeometry(QtCore.QRect(230, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
@@ -101,6 +107,7 @@ class Ui_inspiring(object):
         self.author.setStyleSheet("background-color: rgb(242, 217, 170);")
         self.author.setText("")
         self.author.setObjectName("author")
+        self.set_quote(self.functions.current_quote()) # my code
         self.quotes = QtWidgets.QLabel(self.frame)
         self.quotes.setGeometry(QtCore.QRect(120, 100, 371, 111))
         self.quotes.setStyleSheet("background-color: rgb(255, 170, 255);")
@@ -117,6 +124,19 @@ class Ui_inspiring(object):
         self.back.setText(_translate("inspiring", "Back"))
         self.next.setText(_translate("inspiring", "Next"))
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
+
+    def set_quote(self, quote: Quote): # my code
+        if quote != None: 
+            self.quotes.setText(quote.text)
+            self.author.setText(quote.author)
+
+    def on_next_pressed(self): # my code
+        quote = self.functions.next_quote()
+        self.set_quote(quote)
+
+    def on_back_pressed(self): # my code
+        quote = self.functions.previous_quote()
+        self.set_quote(quote)
 
 
 if __name__ == "__main__":
