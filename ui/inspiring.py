@@ -108,11 +108,11 @@ class Ui_inspiring(object):
         self.author.setText("")
         self.author.setObjectName("author")
         self.set_quote(self.functions.current_quote()) # my code
-        self.quotes = QtWidgets.QLabel(self.frame)
-        self.quotes.setGeometry(QtCore.QRect(120, 100, 371, 111))
-        self.quotes.setStyleSheet("background-color: rgb(255, 170, 255);")
-        self.quotes.setText("")
-        self.quotes.setObjectName("quotes")
+        self.quotes_label = QtWidgets.QLabel(self.frame)
+        self.quotes_label.setGeometry(QtCore.QRect(120, 100, 371, 111))
+        self.quotes_label.setStyleSheet("background-color: rgb(255, 170, 255);")
+        self.quotes_label.setText("")
+        self.quotes_label.setObjectName("quotes")
 
         self.retranslateUi(inspiring)
         QtCore.QMetaObject.connectSlotsByName(inspiring)
@@ -127,7 +127,7 @@ class Ui_inspiring(object):
 
     def set_quote(self, quote: Quote): # my code
         if quote != None: 
-            self.quotes.setText(quote.text)
+            self.quotes_label.setText(quote.text)
             self.author.setText(quote.author)
 
     def on_next_pressed(self): # my code
