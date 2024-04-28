@@ -19,7 +19,6 @@ class Music:
     def play_logic(self):  # initial button play
         match self.play_button:
             case False:
-                self.activate_thread()
                 self.play_song()
             case True:
                 if self.music.get_busy() is True:
@@ -29,9 +28,12 @@ class Music:
 
 
     def play_song(self):
+        if self.play_button is False:
+            self.activate_thread()
+            self.play_button = True
+
         self.music.load(self.current_song)
         self.music.play()
-        self.play_button = True
         self.music.set_endevent(self.END_OF_SONG)
 
 
