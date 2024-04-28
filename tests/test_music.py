@@ -33,7 +33,7 @@ class testMusic(unittest.TestCase):
     def test_prev_song(self):   # FIX IT
         self.music.change_song(-1)  # ensure to start from the end
         self.song_list.reverse()
-        for i, song in enumerate(self.song_list):
+        for i in range(len(self.song_list) + 5): # + 5 makes it loop over and tests the circular function
             self.assertEqual(self.song_list[i % len(self.song_list)], self.music.current_song)
             self.music.prev_song()
 
