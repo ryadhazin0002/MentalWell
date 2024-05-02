@@ -98,18 +98,18 @@ class Ui_inspiring(object):
                                     "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
                                     "}")
         self.MainMenu.setObjectName("MainMenu")
-        self.label_3 = QtWidgets.QLabel(self.stress)
-        self.label_3.setScaledContents(True)
-        self.label_3.setGeometry(QtCore.QRect(420, 80, 201, 161))
-        self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.label_3.setText("")
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.stress)
-        self.label_4.setGeometry(QtCore.QRect(30, 80, 381, 161))
-        self.label_4.setStyleSheet("background-color: rgb(242, 217, 170);")
-        self.label_4.setText("")
-        self.label_4.setObjectName("label_4")
-        self.label_4.setWordWrap(True)
+        self.image_label = QtWidgets.QLabel(self.stress)
+        self.image_label.setScaledContents(True)
+        self.image_label.setGeometry(QtCore.QRect(420, 80, 201, 161))
+        self.image_label.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.image_label.setText("")
+        self.image_label.setObjectName("label_3")
+        self.text_label = QtWidgets.QLabel(self.stress)
+        self.text_label.setGeometry(QtCore.QRect(30, 80, 381, 161))
+        self.text_label.setStyleSheet("background-color: rgb(242, 217, 170);")
+        self.text_label.setText("")
+        self.text_label.setObjectName("label_4")
+        self.text_label.setWordWrap(True)
 
 
         self.retranslateUi(inspiring)
@@ -129,8 +129,8 @@ class Ui_inspiring(object):
             image_path = stress.image
         if image_path:
             pixmap = QtGui.QPixmap(image_path)
-            self.label_3.setPixmap(pixmap)
-        self.label_4.setText(stress.description)
+            self.image_label.setPixmap(pixmap)
+        self.text_label.setText(stress.description)
 
 
     def on_next_pressed(self):
