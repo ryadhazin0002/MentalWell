@@ -55,6 +55,3 @@ login_prompt()
 
 # Logout (optional)
 auth_system.logout()
-
-
-
