@@ -99,6 +99,7 @@ class Ui_inspiring(object):
                                     "}")
         self.MainMenu.setObjectName("MainMenu")
         self.label_3 = QtWidgets.QLabel(self.stress)
+        self.label_3.setScaledContents(True)
         self.label_3.setGeometry(QtCore.QRect(420, 80, 201, 161))
         self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_3.setText("")
@@ -108,6 +109,8 @@ class Ui_inspiring(object):
         self.label_4.setStyleSheet("background-color: rgb(242, 217, 170);")
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
+        self.label_4.setWordWrap(True)
+
 
         self.retranslateUi(inspiring)
         QtCore.QMetaObject.connectSlotsByName(inspiring)
@@ -122,8 +125,13 @@ class Ui_inspiring(object):
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
 
     def set_stress(self, stress: Stress):
-        if stress != None:
-            self.label_4.setText(stress.description)
+        if stress is not None:
+            image_path = stress.image
+        if image_path:
+            pixmap = QtGui.QPixmap(image_path)
+            self.label_3.setPixmap(pixmap)
+        self.label_4.setText(stress.description)
+
 
     def on_next_pressed(self):
         stress = self.functions.next_stress()
