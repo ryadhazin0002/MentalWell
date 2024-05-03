@@ -135,7 +135,8 @@ class Ui_inspiring(object):
 
     def on_next_pressed(self):
         stress = self.functions.next_stress()
-        self.set_stress(stress)
+        if stress is not None:
+            self.set_stress(stress)
 
     def on_back_pressed(self):
         stress = self.functions.previous_stress()

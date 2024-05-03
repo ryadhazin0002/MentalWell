@@ -36,7 +36,7 @@ class StressFunction:
             self.current_stress_index = index
             return self.stresses[index]
 
-    def next_stress(self) -> Stress:
+    def next_stress(self) -> Stress or None:
         if self.current_stress_index != len(self.stresses)-1:
             return self.set_current_stress(self.current_stress_index+1)
 
