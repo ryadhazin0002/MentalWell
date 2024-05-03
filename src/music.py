@@ -9,12 +9,11 @@ class Music:
         pygame.init()
         self.play_button = False
         self.music = pygame.mixer.music
-        self.song_tracker = 0 # starts from first song
+        self.song_tracker = 0  # starts from first song
         self.song_collection = SongCollection()
         self.song_amount = len(self.song_collection.musicPath)
         self.current_song = self.song_collection.musicPath[self.song_tracker]
         self.END_OF_SONG = pygame.USEREVENT + 1  # A queue ID for skipping songs
-
 
     def play_logic(self):  # initial button play
         match self.play_button:
@@ -26,7 +25,6 @@ class Music:
                 else:
                     self.music.unpause()
 
-
     def play_song(self):
         if self.play_button is False:
             self.activate_thread()
@@ -36,10 +34,8 @@ class Music:
         self.music.play()
         self.music.set_endevent(self.END_OF_SONG)
 
-
     def stop_song(self):  # stop when click on main menu
         self.music.stop()
-
 
     def change_song(self, num):  # DONE
         self.song_tracker = num
@@ -47,22 +43,18 @@ class Music:
         self.current_song = self.song_collection.musicPath[self.song_tracker]
         self.play_song()
 
-
     def next_song(self):  # DONE
         self.song_tracker += 1
         self.update_song()
-
 
     def prev_song(self):  # DONE
         self.song_tracker -= 1
         self.update_song()
 
-
     def update_song(self):  # DONE helper method
         self.song_tracker %= self.song_amount
         self.current_song = self.song_collection.musicPath[self.song_tracker]
         self.play_song()
-
 
     def song_ends(self):
         while True:
@@ -71,7 +63,6 @@ class Music:
                     if self.music.get_endevent() == self.END_OF_SONG and not self.music.get_busy():
                         self.next_song()
                         print("Next song")
-
 
     def activate_thread(self):
         end_song_thread = threading.Thread(target=self.song_ends, daemon=True)  # Auto skip song when it's done
@@ -84,32 +75,7 @@ class SongCollection:
         self.musicPath = []  # Use this to play songs
         self.create_list()
 
-
     def create_list(self):
         song_path = os.listdir(self.folder)
         for i in song_path:
             self.musicPath.append(f'{self.folder}' + '\\' + i)
-
-
-class DownloadSongs:  # Youtube change broke the library
-    @staticmethod
-    def download(link):
-        if "https://www.youtube.com" not in link:
-            print("Not a proper link")
-            return  # wrong link return nothing
-
-        yt = YouTube(link)
-        audio = yt.streams.filter(only_audio=True).first()
-        out_file = audio.download(output_path="Music")
-        base, ext = os.path.splitext(out_file)
-        new_mp3_file = base + ".MP3"
-        os.rename(out_file, new_mp3_file)
-
-    @staticmethod
-    def provide_links():  # Automate download MP3 files from youtube
-        while True:
-            song_link = input("Enter Link: ")
-            if song_link == "":
-                break
-            else:
-                DownloadSongs.download(song_link)
