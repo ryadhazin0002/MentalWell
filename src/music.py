@@ -1,6 +1,5 @@
 import pygame
 import os
-from pytube import YouTube
 import threading
 
 
