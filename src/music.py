@@ -91,18 +91,6 @@ class SongCollection:
             self.musicPath.append(f'{self.folder}' + '\\' + i)
 
 
-class SongCollection:
-    def __init__(self):
-        self.folder = '..\\Music'  # Location of stores songs
-        self.musicPath = []  # Use this to play songs
-        self.create_list()
-
-    def create_list(self):
-        song_path = os.listdir(self.folder)
-        for i in song_path:
-            self.musicPath.append(f'{self.folder}' + '\\' + i)
-
-
 class DownloadSongs:  # Youtube change broke the library
     @staticmethod
     def download(link):
