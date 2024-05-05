@@ -1,57 +1,51 @@
-import sqlite3
-from src.connect_to_database import DatabaseManager
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
+from login import Ui_Form  # Importera UI-klassen
+from guestview import GuestView
 
-
-class User:
-    def __init__(self, id, name, username, password):
-        self.id = id
-        self.name = name
-        self.username = username
-        self.password = password
-
-class AuthenticationSystem:
+class LoginLogic(QWidget):
     def __init__(self):
-        self.logged_in_user = None
-        self.connection = sqlite3.connect('MentalWell.db')
-        self.cursor = self.connection.cursor()
+        super().__init__()
 
-    def register(self, name, username, password):
-        self.cursor.execute('INSERT INTO users (name, username, password) VALUES (?, ?, ?)', (name, username, password))
-        self.connection.commit()
-        print("Registration successful.")
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
 
-    def login(self, username, password):
-        self.cursor.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
-        user = self.cursor.fetchone()
-        if user:
-            self.logged_in_user = User(user[0], user[1], user[2], user[3])
-            print("Login successful.")
+        self.guest_view = None
+
+        self.ui.login.clicked.connect(self.login_handler)
+        self.ui.signUp.clicked.connect(self.register_handler)
+        self.ui.guest.clicked.connect(self.continue_as_guest_handler)
+
+    def login_handler(self):
+        username = self.ui.userName.text()
+        password = self.ui.password.text()
+
+    def register_handler(self):
+        print("Sign Up button clicked!") 
+        username = self.ui.userName.text()
+        password = self.ui.password.text()
+        
+        print("Username:", username)
+        print("Password:", password)
+
+        if username and password:
+            print("Both fields are filled.")
+ 
+            QMessageBox.information(self, "Registration", "Registration successful!")
         else:
-            print("Invalid username or password.")
+            print("One or both fields are empty.")
+            QMessageBox.warning(self, "Registration", "Please enter both username and password.")
 
-    def logout(self):
-        if self.logged_in_user:
-            print(f"Logged out user: {self.logged_in_user.username}")
-            self.logged_in_user = None
-        else:
-            print("No user logged in.")
+    def continue_as_guest_handler(self):
+        if not self.guest_view:
+            self.guest_view = GuestView()
+        self.guest_view.show()
 
-    def __del__(self):
-        self.connection.close()
+def main():
+    app = QApplication(sys.argv)
+    login_page = LoginLogic()
+    login_page.show()
+    sys.exit(app.exec_())
 
-# Usage
-auth_system = AuthenticationSystem()
-
-# Register a user
-auth_system.register("John Doe", "johndoe", "password123")
-
-# Login
-def login_prompt():
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
-    auth_system.login(username, password)
-
-login_prompt()
-
-# Logout (optional)
-auth_system.logout()
+if __name__ == "__main__":
+    main()
