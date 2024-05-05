@@ -1,7 +1,5 @@
 import unittest
 
-from src.stress_relief import StressFunction, Stress
-
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):    # Create stress objects for testing
