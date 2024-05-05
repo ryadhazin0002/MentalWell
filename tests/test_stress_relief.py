@@ -1,8 +1,9 @@
+from src.stress_relief import StressFunction, Stress
 import unittest
 
 
 class MyTestCase(unittest.TestCase):
-    def setUp(self):    # Create stress objects for testing
+    def setUp(self):    # Create stress object for unittesting 
         self.stress = StressFunction()
         self.stress.stresses = [
             Stress(1, "image1.jpg", "Discription 1"),
