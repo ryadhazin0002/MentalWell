@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from login import Ui_Form  # Importera UI-klassen
-from guestview import GuestView
+from guest_view import GuestView
 
 class LoginLogic(QWidget):
     def __init__(self):
