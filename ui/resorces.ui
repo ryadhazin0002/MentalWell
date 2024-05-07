@@ -93,9 +93,9 @@ border-radius: 10px;</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>280</y>
-      <width>161</width>
-      <height>31</height>
+      <y>270</y>
+      <width>121</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -123,10 +123,10 @@ QPushButton:pressed {
    <widget class="QPushButton" name="next">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>280</y>
-      <width>161</width>
-      <height>31</height>
+      <x>310</x>
+      <y>270</y>
+      <width>121</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -154,10 +154,10 @@ QPushButton:pressed {
    <widget class="QPushButton" name="mainMenu">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>280</y>
-      <width>161</width>
-      <height>31</height>
+      <x>440</x>
+      <y>270</y>
+      <width>121</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -182,29 +182,60 @@ QPushButton:pressed {
      <string>Main Menu</string>
     </property>
    </widget>
-   <widget class="QLabel" name="resorces">
+   <widget class="QPushButton" name="open_video">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>70</y>
-      <width>471</width>
-      <height>191</height>
+      <x>180</x>
+      <y>270</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #fdfcfa;
+    border: 1px solid #0c253b;
+    border-radius: 10px;
+}
+
+QPushButton:pressed {
+    /* Add styling for when the button is pressed */
+    background-color: #c0c0c0; /* For example, change the background color when pressed */
+}</string>
+    </property>
+    <property name="text">
+     <string>Open video</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="image">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>100</y>
+      <width>161</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(242, 217, 170);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="author">
+   <widget class="QLabel" name="label_text">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>220</y>
-      <width>121</width>
-      <height>21</height>
+      <x>40</x>
+      <y>100</y>
+      <width>351</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
