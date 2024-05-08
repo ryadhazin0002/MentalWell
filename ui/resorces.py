@@ -11,7 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_inspiring(object):
+class Ui_resorces(QtWidgets.QWidget):
+    def __init__(self, parent_page) -> None:
+        super().__init__()
+        #ToDo self.functions = 
+        self.parent_page = parent_page
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
         inspiring.resize(1000, 800)
@@ -75,7 +79,18 @@ class Ui_inspiring(object):
 "}")
         self.next.setObjectName("next")
         self.mainMenu = QtWidgets.QPushButton(self.frame)
+
+        def on_main_menu_clicked():
+            if self.parent_page is not None:
+                window = QtWidgets.QMainWindow()
+                self.parent_page.setupUi(window)
+                window.show()
+                inspiring.close()
+        self.mainMenu.clicked.connect(on_main_menu_clicked)
+        self.mainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
+
         self.mainMenu.setGeometry(QtCore.QRect(440, 270, 121, 21))
+
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -136,7 +151,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
-    ui = Ui_inspiring()
+    ui = Ui_resorces()
     ui.setupUi(inspiring)
     inspiring.show()
     sys.exit(app.exec_())
