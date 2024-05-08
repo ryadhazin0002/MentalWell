@@ -12,10 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from ui.inspiring import Ui_inspiring
 from ui.stress import Ui_stress
-<<<<<<< HEAD
 from ui.resorces import Ui_resorces
-=======
->>>>>>> e8add1d9b04abf571f8b52bc949df337132127c0
 from PyQt5.QtWidgets import QDialog
 
 
