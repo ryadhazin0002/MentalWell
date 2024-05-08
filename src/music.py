@@ -3,78 +3,84 @@ import os
 import threading
 
 
-class Music:
-    def __init__(self):
-        pygame.init()
-        self.play_button = False
-        self.music = pygame.mixer.music
-        self.song_tracker = 0  # starts from first song
-        self.song_collection = SongCollection()
-        self.song_amount = len(self.song_collection.musicPath)
-        self.current_song = self.song_collection.musicPath[self.song_tracker]
-        self.END_OF_SONG = pygame.USEREVENT + 1  # A queue ID for skipping songs
+class MusicPlayer:
+    pygame.init()
+    music = pygame.mixer.music
+    songs = []
+    play_button = False
+    auto_play_thread = True
+    create_thread = True  # Creates 1 thread that lasts the time program runs... deleting and recreating causes issues
+    song_tracker = 0
+    END_OF_SONG = pygame.USEREVENT + 1
 
-    def play_logic(self):  # initial button play
-        match self.play_button:
+    @classmethod
+    def play_logic(cls):
+        match cls.play_button:
             case False:
-                self.play_song()
+                cls.play_music()
             case True:
-                if self.music.get_busy() is True:
-                    self.music.pause()
+                if cls.music.get_busy() is True:
+                    cls.music.pause()
                 else:
-                    self.music.unpause()
+                    cls.music.unpause()
 
-    def play_song(self):
-        if self.play_button is False:
-            self.activate_thread()
-            self.play_button = True
+    @classmethod
+    def play_music(cls):
+        if cls.play_button is False:
+            cls.play_button = True
+            cls.auto_play_thread = True
+        if cls.create_thread is True:
+            cls.activate_thread()
 
-        self.music.load(self.current_song)
-        self.music.play()
-        self.music.set_endevent(self.END_OF_SONG)
+        cls.music.load(cls.songs[cls.song_tracker])
+        cls.music.play()
+        cls.music.set_endevent(cls.END_OF_SONG)
 
-    def stop_song(self):  # stop when click on main menu
-        self.music.stop()
+    @classmethod
+    def stop_music(cls):  # Exits the window SHOULD stop thread too
+        cls.play_button = False
+        cls.auto_play_thread = False
+        cls.music.stop()
 
-    def change_song(self, num):  # DONE
-        self.song_tracker = num
-        self.music.load(self.current_song)
-        self.current_song = self.song_collection.musicPath[self.song_tracker]
-        self.play_song()
+    @classmethod
+    def change_song(cls, num):
+        cls.song_tracker = num
+        cls.music.load(cls.songs[cls.song_tracker])
+        cls.play_music()
 
-    def next_song(self):  # DONE
-        self.song_tracker += 1
-        self.update_song()
+    @classmethod
+    def next_song(cls):
+        cls.song_tracker += 1
+        cls.update_song()
 
-    def prev_song(self):  # DONE
-        self.song_tracker -= 1
-        self.update_song()
+    @classmethod
+    def prev_song(cls):
+        cls.song_tracker -= 1
+        cls.update_song()
 
-    def update_song(self):  # DONE helper method
-        self.song_tracker %= self.song_amount
-        self.current_song = self.song_collection.musicPath[self.song_tracker]
-        self.play_song()
+    @classmethod
+    def update_song(cls):
+        cls.song_tracker %= len(cls.songs)
+        cls.play_music()
 
-    def song_ends(self):
+    @classmethod
+    def auto_skip(cls):
         while True:
-            if self.music.get_busy() is False:
-                for _ in pygame.event.get():
-                    if self.music.get_endevent() == self.END_OF_SONG and not self.music.get_busy():
-                        self.next_song()
-                        print("Next song")
+            while cls.auto_play_thread:
+                if cls.music.get_busy() is False:
+                    for _ in pygame.event.get():
+                        if cls.music.get_endevent() == cls.END_OF_SONG and not cls.music.get_busy():
+                            cls.next_song()
+                            print("Next song")
 
-    def activate_thread(self):
-        end_song_thread = threading.Thread(target=self.song_ends, daemon=True)  # Auto skip song when it's done
-        end_song_thread.start()  # Start thread to make it work
+    @classmethod
+    def activate_thread(cls):
+        cls.create_thread = False
+        end_song_thread = threading.Thread(target=cls.auto_skip, daemon=True)
+        end_song_thread.start()
 
-
-class SongCollection:
-    def __init__(self):
-        self.folder = '.\\Music'  # Location of stores songs
-        self.musicPath = []  # Use this to play songs
-        self.create_list()
-
-    def create_list(self):
-        song_path = os.listdir(self.folder)
-        for i in song_path:
-            self.musicPath.append(f'{self.folder}' + '\\' + i)
+    @classmethod
+    def load_song_path(cls):
+        folder = '..\\Music'
+        for i in os.listdir(folder):
+            cls.songs.append(f'{folder}\\{i}')
