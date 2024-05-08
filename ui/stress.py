@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from src.stress_relief import Stress, StressFunction
 
 
-class Ui_inspiring(object):
+class Ui_stress(object):
 
     def __init__(self) -> None:
         self.functions = StressFunction()
