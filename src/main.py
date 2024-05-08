@@ -13,6 +13,7 @@ def main():
     login_page.show()
     sys.exit(app.exec_())
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
