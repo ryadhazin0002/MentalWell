@@ -12,9 +12,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from ui.inspiring import Ui_inspiring
 from ui.stress import Ui_stress
+from PyQt5.QtWidgets import QDialog
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QDialog):
+    def __init__(self):
+        super(Ui_MainWindow, self).__init__()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
