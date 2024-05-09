@@ -9,12 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from src.resources import Resources
 
 
 class Ui_resorces(QtWidgets.QWidget):
     def __init__(self, parent_page) -> None:
         super().__init__()
-        #ToDo self.functions = 
+        self.functions = Resources()
         self.parent_page = parent_page
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
@@ -147,11 +148,13 @@ class Ui_resorces(QtWidgets.QWidget):
         self.open_video.setText(_translate("inspiring", "Open video"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
-    ui = Ui_resorces()
+    ui = Ui_resorces(None)
     ui.setupUi(inspiring)
     inspiring.show()
     sys.exit(app.exec_())

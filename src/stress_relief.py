@@ -40,7 +40,7 @@ class StressFunction:
         if self.current_stress_index != len(self.stresses)-1:
             return self.set_current_stress(self.current_stress_index+1)
 
-    def previous_stress(self) -> Stress:
+    def previous_stress(self) -> Stress or None:
         if self.current_stress_index != 0:
             return self.set_current_stress(self.current_stress_index-1)
 

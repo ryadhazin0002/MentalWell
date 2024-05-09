@@ -12,7 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from ui.inspiring import Ui_inspiring
 from ui.stress import Ui_stress
-from ui.resorces import Ui_resorces
+from ui.support import Ui_Support
+from ui.external_resources import Ui_resorces
 from PyQt5.QtWidgets import QDialog
 
 
@@ -70,11 +71,7 @@ class Ui_MainWindow(QDialog):
         self.inspiring.setFlat(False)
         self.inspiring.setObjectName("inspiring")
         self.stress = QtWidgets.QPushButton(self.frame)
-        try:
-            self.stress.clicked.connect(lambda: self.navigate(MainWindow, Ui_stress(self)))
-            print('works')
-        except:
-            print('not working')
+        self.stress.clicked.connect(lambda: self.navigate(MainWindow, Ui_stress(self)))
         self.stress.setEnabled(True)
         self.stress.setGeometry(QtCore.QRect(0, 70, 351, 41))
         font = QtGui.QFont()
@@ -98,7 +95,7 @@ class Ui_MainWindow(QDialog):
                                   "")
         self.stress.setObjectName("stress")
         self.resorces = QtWidgets.QPushButton(self.frame)
-        self.resorces.clicked.connect(lambda: self.navigate(MainWindow, Ui_resorces(self)))
+        #self.resorces.clicked.connect(lambda: self.navigate(MainWindow, Ui_resorces(self)))
         self.resorces.setEnabled(True)
         self.resorces.setGeometry(QtCore.QRect(0, 130, 351, 41))
         font = QtGui.QFont()
@@ -145,6 +142,7 @@ class Ui_MainWindow(QDialog):
                                  "")
         self.music.setObjectName("music")
         self.support = QtWidgets.QPushButton(self.frame)
+        self.support.clicked.connect(lambda: self.navigate(MainWindow, Ui_Support(self)))
         self.support.setEnabled(True)
         self.support.setGeometry(QtCore.QRect(0, 250, 351, 41))
         font = QtGui.QFont()
