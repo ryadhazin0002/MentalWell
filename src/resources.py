@@ -1,12 +1,17 @@
 from src.connect_to_database import DatabaseManager
 
-
 class Resources:
-    def __init__(self, id, description, image_path=None, link=None) -> None:
+    def __init__(self, id, image_path, description,video_link) -> None:
         self.id = id
-        self.description = description
         self.image_path = image_path
-        self.link = link
+        self.description = description
+        self.video_link = video_link
+        pass
+
+    id: int
+    image_path: str
+    description: str
+    video_link: str
 
 
 
@@ -21,15 +26,11 @@ class ResourcesFunction:
         pass
 
     def get_all(self) -> list[Resources]:
-        global data
         result = self.database.execute_query("SELECT * FROM external_resources;")
-        if result:
+        if result != None:
             data = []
-        for item in result:
-            if len(item) >= 3:
-                data.append(Resources(item[0], item[1], item[2]))
-            else:
-                print("Warning: Incomplete data in database for resource:", item)
+            for item in result:
+                data.append(Resources(item[0], item[1], item[2], item[3]))
             return data
         return []
 
@@ -38,15 +39,16 @@ class ResourcesFunction:
             self.current_resource_index = index
             return self.resources_ls[index]
 
-    def next_stress(self) -> Resources or None:
-        if self.current_resource_index != len(self.resources_ls) - 1:
-            return self.set_current_resources(self.current_resource_index + 1)
+    def next_resource(self)-> Resources or None:
+        if self.current_resource_index != len(self.resources_ls)-1:
+            return self.set_current_resources(self.current_resource_index+1)
 
-    def previous_stress(self) -> Resources:
+    def previous_resource(self) -> Resources or None:
         if self.current_resource_index != 0:
             return self.set_current_resources(self.current_resource_index - 1)
 
-    def current_stress(self):
+    def current_resource(self):
         if self.current_resource_index is None:
             return None
         return self.resources_ls[self.current_resource_index]
+

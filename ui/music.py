@@ -16,7 +16,11 @@ music_player = src.music.MusicPlayer  # my code
 music_player.load_song_path()
 
 
-class Ui_inspiring(object):
+class Ui_Music(object):
+
+    def __init__(self, parent_page) -> None:
+        super().__init__()
+        self.parent_page = parent_page
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
         inspiring.resize(1000, 800)
@@ -51,16 +55,16 @@ class Ui_inspiring(object):
         font.setBold(True)
         font.setWeight(75)
         self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("QPushButton {\n"
-                                      "    background-color: #fdfcfa;\n"
-                                      "    border: 1px solid #0c253b;\n"
-                                      "    border-radius: 10px;\n"
-                                      "}\n"
-                                      "\n"
-                                      "QPushButton:pressed {\n"
-                                      "    /* Add styling for when the button is pressed */\n"
-                                      "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-                                      "}")
+        #self.pushButton.setStyleSheet("QPushButton {\n"
+        #                              "    background-color: #fdfcfa;\n"
+        #                              "    border: 1px solid #0c253b;\n"
+        #                              "    border-radius: 10px;\n"
+        #                              "}\n"
+        #                              "\n"
+        #                              "QPushButton:pressed {\n"
+        #                              "    /* Add styling for when the button is pressed */\n"
+        #                              "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+        #                              "}")
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.frame)
         self.pushButton_2.setGeometry(QtCore.QRect(230, 280, 161, 31))
@@ -68,18 +72,25 @@ class Ui_inspiring(object):
         font.setBold(True)
         font.setWeight(75)
         self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("QPushButton {\n"
-                                        "    background-color: #fdfcfa;\n"
-                                        "    border: 1px solid #0c253b;\n"
-                                        "    border-radius: 10px;\n"
-                                        "}\n"
-                                        "\n"
-                                        "QPushButton:pressed {\n"
-                                        "    /* Add styling for when the button is pressed */\n"
-                                        "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-                                        "}")
+        #self.pushButton_2.setStyleSheet("QPushButton {\n"
+        #                                "    background-color: #fdfcfa;\n"
+        #                                "    border: 1px solid #0c253b;\n"
+        #                                "    border-radius: 10px;\n"
+        #                                "}\n"
+        #                                "\n"
+        #                                "QPushButton:pressed {\n"
+        #                                "    /* Add styling for when the button is pressed */\n"
+        #                                "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+        #                                "}")
         self.pushButton_2.setObjectName("pushButton_2")
         self.MainMenu = QtWidgets.QPushButton(self.frame)
+        def on_main_menu_clicked():
+            if self.parent_page is not None:
+                window = QtWidgets.QMainWindow()
+                self.parent_page.setupUi(window)
+                window.show()
+                inspiring.close()
+        self.MainMenu.clicked.connect(on_main_menu_clicked)
         self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
         font = QtGui.QFont()
         font.setBold(True)
@@ -170,8 +181,8 @@ class Ui_inspiring(object):
         _translate = QtCore.QCoreApplication.translate
         inspiring.setWindowTitle(_translate("inspiring", "Form"))
         self.label_2.setText(_translate("inspiring", "A list of Music"))
-        self.pushButton.setText(_translate("inspiring", "Back"))
-        self.pushButton_2.setText(_translate("inspiring", "Next"))
+        #self.pushButton.setText(_translate("inspiring", "Back"))
+        #self.pushButton_2.setText(_translate("inspiring", "Next"))
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
         self.prev_song_button.setText(_translate("inspiring", "|◁"))
         self.play_button.setText(_translate("inspiring", "▶ ılıılııl"))
@@ -191,7 +202,7 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
-    ui = Ui_inspiring()
+    ui = Ui_Music(None)
     ui.setupUi(inspiring)
     inspiring.show()
     sys.exit(app.exec_())

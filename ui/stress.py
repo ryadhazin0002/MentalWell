@@ -157,7 +157,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
-    ui = Ui_stress()
+    ui = Ui_stress(None)
     ui.setupUi(inspiring)
     inspiring.show()
     sys.exit(app.exec_())

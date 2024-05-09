@@ -51,17 +51,17 @@ class Ui_Support(QtWidgets.QDialog):
         font.setBold(True)
         font.setWeight(75)
         self.back.setFont(font)
-        self.back.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
-        self.back.setObjectName("back")
+#        self.back.setStyleSheet("QPushButton {\n"
+#"    background-color: #fdfcfa;\n"
+#"    border: 1px solid #0c253b;\n"
+#"    border-radius: 10px;\n"
+#"}\n"
+#"\n"
+#"QPushButton:pressed {\n"
+#"    /* Add styling for when the button is pressed */\n"
+#"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+#"}")
+        #self.back.setObjectName("back")
         self.MainMenu = QtWidgets.QPushButton(self.frame)
         def on_main_menu_clicked():
             if self.parent_page is not None:
@@ -103,7 +103,7 @@ class Ui_Support(QtWidgets.QDialog):
         _translate = QtCore.QCoreApplication.translate
         inspiring.setWindowTitle(_translate("inspiring", "Form"))
         self.label_2.setText(_translate("inspiring", "Support"))
-        self.back.setText(_translate("inspiring", "Back"))
+        #self.back.setText(_translate("inspiring", "Back"))
         self.MainMenu.setText(_translate("inspiring", "Main Menu"))
         self.plainTextEdit.setPlainText(_translate("inspiring", "       \n"
 "       mustafa.al-bayati0036@stud.hkr.se\n"

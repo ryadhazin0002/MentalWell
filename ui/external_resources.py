@@ -9,7 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from src.resources import Resources, ResourcesFunction
-
+import webbrowser
 
 class Ui_inspiring(object):
     def __init__(self) -> None:
@@ -25,6 +25,7 @@ class Ui_resorces(QtWidgets.QWidget):
         super().__init__()
         self.functions = ResourcesFunction()
         self.parent_page = parent_page
+
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
         inspiring.resize(1000, 800)
@@ -41,7 +42,7 @@ class Ui_resorces(QtWidgets.QWidget):
         self.frame = QtWidgets.QFrame(inspiring)
         self.frame.setGeometry(QtCore.QRect(170, 320, 611, 331))
         self.frame.setStyleSheet("background-color: rgb(61, 220, 255);\n"
-"border-radius: 10px;")
+                                 "border-radius: 10px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -54,38 +55,40 @@ class Ui_resorces(QtWidgets.QWidget):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.back = QtWidgets.QPushButton(self.frame)
+        self.back.clicked.connect(self.on_back_pressed)
         self.back.setGeometry(QtCore.QRect(50, 270, 121, 21))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.back.setFont(font)
         self.back.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                "    background-color: #fdfcfa;\n"
+                                "    border: 1px solid #0c253b;\n"
+                                "    border-radius: 10px;\n"
+                                "}\n"
+                                "\n"
+                                "QPushButton:pressed {\n"
+                                "    /* Add styling for when the button is pressed */\n"
+                                "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                "}")
         self.back.setObjectName("back")
         self.next = QtWidgets.QPushButton(self.frame)
+        self.next.clicked.connect(self.on_next_pressed)
         self.next.setGeometry(QtCore.QRect(310, 270, 121, 21))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         self.next.setFont(font)
         self.next.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                "    background-color: #fdfcfa;\n"
+                                "    border: 1px solid #0c253b;\n"
+                                "    border-radius: 10px;\n"
+                                "}\n"
+                                "\n"
+                                "QPushButton:pressed {\n"
+                                "    /* Add styling for when the button is pressed */\n"
+                                "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                "}")
         self.next.setObjectName("next")
         self.mainMenu = QtWidgets.QPushButton(self.frame)
 
@@ -95,6 +98,7 @@ class Ui_resorces(QtWidgets.QWidget):
                 self.parent_page.setupUi(window)
                 window.show()
                 inspiring.close()
+
         self.mainMenu.clicked.connect(on_main_menu_clicked)
         self.mainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
 
@@ -105,15 +109,15 @@ class Ui_resorces(QtWidgets.QWidget):
         font.setWeight(75)
         self.mainMenu.setFont(font)
         self.mainMenu.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                    "    background-color: #fdfcfa;\n"
+                                    "    border: 1px solid #0c253b;\n"
+                                    "    border-radius: 10px;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:pressed {\n"
+                                    "    /* Add styling for when the button is pressed */\n"
+                                    "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                    "}")
         self.mainMenu.setObjectName("mainMenu")
         self.open_video = QtWidgets.QPushButton(self.frame)
         self.open_video.setGeometry(QtCore.QRect(180, 270, 121, 21))
@@ -122,26 +126,29 @@ class Ui_resorces(QtWidgets.QWidget):
         font.setWeight(75)
         self.open_video.setFont(font)
         self.open_video.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                      "    background-color: #fdfcfa;\n"
+                                      "    border: 1px solid #0c253b;\n"
+                                      "    border-radius: 10px;\n"
+                                      "}\n"
+                                      "\n"
+                                      "QPushButton:pressed {\n"
+                                      "    /* Add styling for when the button is pressed */\n"
+                                      "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                      "}")
         self.open_video.setObjectName("open_video")
         self.image = QtWidgets.QLabel(self.frame)
+        self.image.setScaledContents(True)
         self.image.setGeometry(QtCore.QRect(400, 100, 161, 151))
         self.image.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.image.setText("")
         self.image.setObjectName("image")
-        self.label_text = QtWidgets.QLabel(self.frame)
-        self.label_text.setGeometry(QtCore.QRect(40, 100, 351, 151))
-        self.label_text.setStyleSheet("background-color: rgb(242, 217, 170);")
-        self.label_text.setText("")
-        self.label_text.setObjectName("label_text")
+        self.description_text = QtWidgets.QLabel(self.frame)
+        self.description_text.setGeometry(QtCore.QRect(40, 100, 351, 151))
+        self.description_text.setStyleSheet("background-color: rgb(242, 217, 170);")
+        self.description_text.setText("")
+        self.description_text.setObjectName("description_label")
+        self.description_text.setWordWrap(True)
+        self.set_resource(self.functions.current_resource())
 
         self.retranslateUi(inspiring)
         QtCore.QMetaObject.connectSlotsByName(inspiring)
@@ -154,19 +161,35 @@ class Ui_resorces(QtWidgets.QWidget):
         self.next.setText(_translate("inspiring", "Next"))
         self.mainMenu.setText(_translate("inspiring", "Main Menu"))
         self.open_video.setText(_translate("inspiring", "Open video"))
-
-    def load_resource(self):
-        current_resource = self.function.current_stress()
-        if current_resource:
-            pixmap = QtGui.QPixmap(current_resource.image_path)
-            self.label.setPixmap(pixmap)
-            self.label_text.setText(current_resource.description)
+        self.open_video.clicked.connect(self.on_open_video_pressed)
 
 
+    def set_resource(self, resource: Resources):
+        if resource is not None:
+            image = resource.image_path
+        if image:
+            pixmap = QtGui.QPixmap(image)
+            self.image.setPixmap(pixmap)
+        self.description_text.setText(resource.description)
+
+    def on_next_pressed(self):
+        resource = self.functions.next_resource()
+        if resource is not None:
+            self.set_resource(resource)
+
+    def on_back_pressed(self):
+        resource = self.functions.previous_resource()
+        if resource is not None:
+            self.set_resource(resource)
+
+    def on_open_video_pressed(self):
+        video = self.functions.current_resource().video_link
+        webbrowser.open(f'{video}')
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
     ui = Ui_resorces(None)
