@@ -12,9 +12,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from ui.inspiring import Ui_inspiring
 from ui.stress import Ui_stress
+from ui.support import Ui_Support
+from ui.external_resources import Ui_resorces
+from PyQt5.QtWidgets import QDialog
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QDialog):
+    def __init__(self):
+        super(Ui_MainWindow, self).__init__()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
@@ -65,7 +71,7 @@ class Ui_MainWindow(object):
         self.inspiring.setFlat(False)
         self.inspiring.setObjectName("inspiring")
         self.stress = QtWidgets.QPushButton(self.frame)
-        self.stress.clicked.connect(lambda: self.navigate(MainWindow, ui.music.Ui_inspiring()))
+        self.stress.clicked.connect(lambda: self.navigate(MainWindow, Ui_stress(self)))
         self.stress.setEnabled(True)
         self.stress.setGeometry(QtCore.QRect(0, 70, 351, 41))
         font = QtGui.QFont()
@@ -89,6 +95,7 @@ class Ui_MainWindow(object):
                                   "")
         self.stress.setObjectName("stress")
         self.resorces = QtWidgets.QPushButton(self.frame)
+        #self.resorces.clicked.connect(lambda: self.navigate(MainWindow, Ui_resorces(self)))
         self.resorces.setEnabled(True)
         self.resorces.setGeometry(QtCore.QRect(0, 130, 351, 41))
         font = QtGui.QFont()
@@ -135,6 +142,7 @@ class Ui_MainWindow(object):
                                  "")
         self.music.setObjectName("music")
         self.support = QtWidgets.QPushButton(self.frame)
+        self.support.clicked.connect(lambda: self.navigate(MainWindow, Ui_Support(self)))
         self.support.setEnabled(True)
         self.support.setGeometry(QtCore.QRect(0, 250, 351, 41))
         font = QtGui.QFont()
@@ -202,7 +210,7 @@ class Ui_MainWindow(object):
         new_window = QtWidgets.QMainWindow()
         page.setupUi(new_window)
         new_window.show()
-        current_window.close()
+        current_window.hide()
 
 
 if __name__ == "__main__":

@@ -12,10 +12,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from src.stress_relief import Stress, StressFunction
 
 
-class Ui_inspiring(object):
+class Ui_stress(QtWidgets.QDialog):
 
-    def __init__(self) -> None:
+    def __init__(self, parent_page) -> None:
+        super().__init__()
         self.functions = StressFunction()
+        self.parent_page = parent_page
 
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
@@ -82,6 +84,13 @@ class Ui_inspiring(object):
                                 "}")
         self.next.setObjectName("next")
         self.MainMenu = QtWidgets.QPushButton(self.stress)
+        def on_main_menu_clicked():
+            if self.parent_page is not None:
+                window = QtWidgets.QMainWindow()
+                self.parent_page.setupUi(window)
+                window.show()
+                inspiring.close()
+        self.MainMenu.clicked.connect(on_main_menu_clicked)
         self.MainMenu.setGeometry(QtCore.QRect(430, 260, 191, 31))
         font = QtGui.QFont()
         font.setBold(True)
@@ -140,14 +149,15 @@ class Ui_inspiring(object):
 
     def on_back_pressed(self):
         stress = self.functions.previous_stress()
-        self.set_stress(stress)
+        if stress is not None:
+            self.set_stress(stress)
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
-    ui = Ui_inspiring()
+    ui = Ui_stress()
     ui.setupUi(inspiring)
     inspiring.show()
     sys.exit(app.exec_())

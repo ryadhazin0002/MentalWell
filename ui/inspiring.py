@@ -13,7 +13,7 @@ import sys
 from src.quotes import Quote, QuoteFunctions
 
 
-class Ui_inspiring(QtWidgets.QWidget):
+class Ui_inspiring(QtWidgets.QDialog):
     def __init__(self, parent_page) -> None:
         super().__init__()
         self.functions = QuoteFunctions()

@@ -9,9 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import src.music    # my code
+import src.music  # my code
 
-music_player = src.music.Music() # my code
+
+music_player = src.music.MusicPlayer  # my code
+music_player.load_song_path()
+
 
 class Ui_inspiring(object):
     def setupUi(self, inspiring):
@@ -30,7 +33,7 @@ class Ui_inspiring(object):
         self.frame = QtWidgets.QFrame(inspiring)
         self.frame.setGeometry(QtCore.QRect(170, 320, 611, 331))
         self.frame.setStyleSheet("background-color: rgb(61, 220, 255);\n"
-"border-radius: 10px;")
+                                 "border-radius: 10px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -49,15 +52,15 @@ class Ui_inspiring(object):
         font.setWeight(75)
         self.pushButton.setFont(font)
         self.pushButton.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                      "    background-color: #fdfcfa;\n"
+                                      "    border: 1px solid #0c253b;\n"
+                                      "    border-radius: 10px;\n"
+                                      "}\n"
+                                      "\n"
+                                      "QPushButton:pressed {\n"
+                                      "    /* Add styling for when the button is pressed */\n"
+                                      "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                      "}")
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.frame)
         self.pushButton_2.setGeometry(QtCore.QRect(230, 280, 161, 31))
@@ -66,15 +69,15 @@ class Ui_inspiring(object):
         font.setWeight(75)
         self.pushButton_2.setFont(font)
         self.pushButton_2.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                        "    background-color: #fdfcfa;\n"
+                                        "    border: 1px solid #0c253b;\n"
+                                        "    border-radius: 10px;\n"
+                                        "}\n"
+                                        "\n"
+                                        "QPushButton:pressed {\n"
+                                        "    /* Add styling for when the button is pressed */\n"
+                                        "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                        "}")
         self.pushButton_2.setObjectName("pushButton_2")
         self.MainMenu = QtWidgets.QPushButton(self.frame)
         self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
@@ -83,15 +86,15 @@ class Ui_inspiring(object):
         font.setWeight(75)
         self.MainMenu.setFont(font)
         self.MainMenu.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                    "    background-color: #fdfcfa;\n"
+                                    "    border: 1px solid #0c253b;\n"
+                                    "    border-radius: 10px;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton:pressed {\n"
+                                    "    /* Add styling for when the button is pressed */\n"
+                                    "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                    "}")
         self.MainMenu.setObjectName("MainMenu")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(70, 70, 471, 191))
@@ -109,15 +112,15 @@ class Ui_inspiring(object):
         font.setPointSize(12)
         self.prev_song_button.setFont(font)
         self.prev_song_button.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                            "    background-color: #fdfcfa;\n"
+                                            "    border: 1px solid #0c253b;\n"
+                                            "    border-radius: 10px;\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:pressed {\n"
+                                            "    /* Add styling for when the button is pressed */\n"
+                                            "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                            "}")
         self.prev_song_button.setObjectName("prev_song_button")
         self.play_button = QtWidgets.QPushButton(self.frame)
         self.play_button.setGeometry(QtCore.QRect(244, 210, 111, 31))
@@ -125,15 +128,15 @@ class Ui_inspiring(object):
         font.setPointSize(12)
         self.play_button.setFont(font)
         self.play_button.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                       "    background-color: #fdfcfa;\n"
+                                       "    border: 1px solid #0c253b;\n"
+                                       "    border-radius: 10px;\n"
+                                       "}\n"
+                                       "\n"
+                                       "QPushButton:pressed {\n"
+                                       "    /* Add styling for when the button is pressed */\n"
+                                       "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                       "}")
         self.play_button.setObjectName("play_button")
         self.next_song_button = QtWidgets.QPushButton(self.frame)
         self.next_song_button.setGeometry(QtCore.QRect(370, 210, 121, 31))
@@ -141,26 +144,27 @@ class Ui_inspiring(object):
         font.setPointSize(12)
         self.next_song_button.setFont(font)
         self.next_song_button.setStyleSheet("QPushButton {\n"
-"    background-color: #fdfcfa;\n"
-"    border: 1px solid #0c253b;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    /* Add styling for when the button is pressed */\n"
-"    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
-"}")
+                                            "    background-color: #fdfcfa;\n"
+                                            "    border: 1px solid #0c253b;\n"
+                                            "    border-radius: 10px;\n"
+                                            "}\n"
+                                            "\n"
+                                            "QPushButton:pressed {\n"
+                                            "    /* Add styling for when the button is pressed */\n"
+                                            "    background-color: #c0c0c0; /* For example, change the background color when pressed */\n"
+                                            "}")
         self.next_song_button.setObjectName("next_song_button")
         self.list_label = QtWidgets.QLabel(self.frame)
         self.list_label.setGeometry(QtCore.QRect(120, 90, 371, 101))
         self.list_label.setStyleSheet("\n"
-"background-color: rgb(255, 170, 255);")
+                                      "background-color: rgb(255, 170, 255);")
         self.list_label.setText("")
         self.list_label.setObjectName("list_label")
 
         self.retranslateUi(inspiring)
-        self.button_functions() # my code
+        self.button_functions()  # my code
         QtCore.QMetaObject.connectSlotsByName(inspiring)
+
 
     def retranslateUi(self, inspiring):
         _translate = QtCore.QCoreApplication.translate
@@ -174,15 +178,17 @@ class Ui_inspiring(object):
         self.next_song_button.setText(_translate("inspiring", "▷|"))
 
 
-    def button_functions(self):     # My code
+    def button_functions(self):  # My code
         self.play_button.clicked.connect(music_player.play_logic)
         self.next_song_button.clicked.connect(music_player.next_song)
         self.prev_song_button.clicked.connect(music_player.prev_song)
-
+        self.MainMenu.clicked.connect(music_player.stop_music)
 
 
 if __name__ == "__main__":
     import sys
+
+
     app = QtWidgets.QApplication(sys.argv)
     inspiring = QtWidgets.QWidget()
     ui = Ui_inspiring()
