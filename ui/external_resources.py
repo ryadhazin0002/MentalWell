@@ -23,7 +23,7 @@ from src.resources import Resources
 class Ui_resorces(QtWidgets.QWidget):
     def __init__(self, parent_page) -> None:
         super().__init__()
-        self.functions = Resources()
+        self.functions = ResourcesFunction()
         self.parent_page = parent_page
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
