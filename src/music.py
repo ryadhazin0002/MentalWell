@@ -2,6 +2,8 @@ import pygame
 import os
 import threading
 
+from config import music_path
+
 
 class MusicPlayer:
     pygame.init()
@@ -91,6 +93,6 @@ class MusicPlayer:
 
     @classmethod
     def load_song_path(cls):
-        folder = '..\\Music'
+        folder = music_path
         for i in os.listdir(folder):
             cls.songs.append(f'{folder}\\{i}')

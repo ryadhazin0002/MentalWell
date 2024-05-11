@@ -10,11 +10,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from ui.inspiring import Ui_inspiring
-from ui.stress import Ui_stress
-from ui.support import Ui_Support
-from ui.music import Ui_Music
-from ui.external_resources import Ui_resorces
+from config import logo_path
+from .inspiring import Ui_inspiring
+from .stress import Ui_stress
+from .support import Ui_Support
+from .music import Ui_Music
+from .external_resources import Ui_resorces
 from PyQt5.QtWidgets import QDialog
 
 
@@ -35,7 +36,7 @@ class Ui_MainWindow(QDialog):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(360, 40, 231, 211))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap(logo_path))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.frame = QtWidgets.QFrame(self.centralwidget)

@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+from config import logo_path
 from src.stress_relief import Stress, StressFunction
 
 
@@ -29,7 +31,7 @@ class Ui_stress(QtWidgets.QDialog):
         self.label.setGeometry(QtCore.QRect(380, 60, 221, 191))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap(logo_path))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.stress = QtWidgets.QFrame(inspiring)

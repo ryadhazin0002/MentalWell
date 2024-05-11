@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from config import logo_path
+
 
 class Ui_Support(QtWidgets.QDialog):
 
@@ -27,7 +29,7 @@ class Ui_Support(QtWidgets.QDialog):
         self.label.setGeometry(QtCore.QRect(370, 70, 221, 191))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap(logo_path))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.frame = QtWidgets.QFrame(inspiring)

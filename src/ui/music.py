@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import src.music  # my code
-
+from config import logo_path
 
 music_player = src.music.MusicPlayer  # my code
 music_player.load_song_path()
@@ -31,7 +31,7 @@ class Ui_Music(object):
         self.label.setGeometry(QtCore.QRect(370, 70, 221, 191))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../images/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap(logo_path))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.frame = QtWidgets.QFrame(inspiring)

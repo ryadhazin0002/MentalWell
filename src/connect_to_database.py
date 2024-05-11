@@ -1,5 +1,8 @@
 import sqlite3
 
+from config import database_path
+
+
 class DatabaseManager:
     _instance = None
     connection = None
@@ -17,7 +20,7 @@ class DatabaseManager:
     def connect(self):
         if self.connection is None:
             try:
-                self.connection = sqlite3.connect('../MentalWell.db')
+                self.connection = sqlite3.connect(database_path)
                 print("Successfully Connected to SQLite")
             except sqlite3.Error as error:
                 print("Error while connecting to a database:", error)

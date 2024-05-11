@@ -1,3 +1,4 @@
+from config import root_dir
 from src.connect_to_database import DatabaseManager
 
 class Resources:
@@ -30,7 +31,7 @@ class ResourcesFunction:
         if result != None:
             data = []
             for item in result:
-                data.append(Resources(item[0], item[1], item[2], item[3]))
+                data.append(Resources(item[0], root_dir+item[1], item[2], item[3]))
             return data
         return []
 

@@ -1,3 +1,4 @@
+from config import root_dir
 from src.connect_to_database import DatabaseManager  # Import DatabaseManager
 
 
@@ -28,7 +29,7 @@ class StressFunction:
         if result != None:
             data = []
             for item in result:
-                data.append(Stress(item[0], item[1], item[2]))
+                data.append(Stress(item[0], root_dir + item[1], item[2]))
             return data
         return []
     def set_current_stress(self, index) -> Stress:
