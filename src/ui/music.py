@@ -44,7 +44,7 @@ class Ui_Music(object):
         self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setGeometry(QtCore.QRect(80, 40, 451, 21))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
         self.label_2.setFont(font)

@@ -168,16 +168,16 @@ class Ui_MainWindow(QDialog):
                                    "\n"
                                    "")
         self.support.setObjectName("support")
-        self.signOut = QtWidgets.QPushButton(self.frame)
-        self.signOut.setEnabled(True)
-        self.signOut.setGeometry(QtCore.QRect(0, 310, 351, 41))
+        self.exit = QtWidgets.QPushButton(self.frame)
+        self.exit.setEnabled(True)
+        self.exit.setGeometry(QtCore.QRect(0, 310, 351, 41))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic ui Semibold")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        self.signOut.setFont(font)
-        self.signOut.setStyleSheet("QPushButton {\n"
+        self.exit.setFont(font)
+        self.exit.setStyleSheet("QPushButton {\n"
                                    "    background-color: #fdfcfa;\n"
                                    "    border: 1px solid #0c253b;\n"
                                    "    border-radius: 10px;\n"
@@ -190,7 +190,7 @@ class Ui_MainWindow(QDialog):
                                    "\n"
                                    "\n"
                                    "")
-        self.signOut.setObjectName("signOut")
+        self.exit.setObjectName("Exit")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -207,13 +207,17 @@ class Ui_MainWindow(QDialog):
         self.resorces.setText(_translate("MainWindow", "External Resorces"))
         self.music.setText(_translate("MainWindow", "A list of Music"))
         self.support.setText(_translate("MainWindow", "Support"))
-        self.signOut.setText(_translate("MainWindow", "Sign out"))
+        self.exit.setText(_translate("MainWindow", "Exit"))
+        self.exit.clicked.connect(MainWindow.close)
+
+
 
     def navigate(self, current_window, page: QtWidgets.QWidget):
         new_window = QtWidgets.QMainWindow()
         page.setupUi(new_window)
         new_window.show()
         current_window.hide()
+
 
 
 if __name__ == "__main__":

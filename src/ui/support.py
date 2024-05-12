@@ -95,7 +95,8 @@ class Ui_Support(QtWidgets.QDialog):
         self.support.setObjectName("support")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.frame)
         self.plainTextEdit.setGeometry(QtCore.QRect(110, 90, 401, 151))
-        self.plainTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.plainTextEdit.setStyleSheet("background-color: rgb(255, 255, 255); font-size: 12pt;")
+        #self.plainTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.plainTextEdit.setObjectName("plainTextEdit")
 
         self.retranslateUi(inspiring)
