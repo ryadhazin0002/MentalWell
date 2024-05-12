@@ -17,7 +17,7 @@ class DatabaseManager:
     def connect(self):
         if self.connection is None:
             try:
-                self.connection = sqlite3.connect('../MentalWell.db')
+                self.connection = sqlite3.connect('MentalWell.db')
                 print("Successfully Connected to SQLite")
             except sqlite3.Error as error:
                 print("Error while connecting to a database:", error)
@@ -38,3 +38,11 @@ class DatabaseManager:
             return None
         finally:
             cursor.close()
+
+    def check_username_exists(self, username):
+        query = f"SELECT * FROM users WHERE username = '{username}'"
+        result = self.execute_query(query)
+        if result:
+            return True
+        else:
+            return False

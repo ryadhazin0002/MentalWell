@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from login import Ui_Form  # Importera UI-klassen
-from guest_view import GuestView #adding comment
+from guest_view import GuestView
+from connect_to_database import DatabaseManager  # Importera DatabaseManager
 
 class LoginLogic(QWidget):
     def __init__(self):
@@ -11,6 +12,7 @@ class LoginLogic(QWidget):
         self.ui.setupUi(self)
 
         self.guest_view = None
+        self.db_manager = DatabaseManager()  # Skapa en instans av DatabaseManager
 
         self.ui.login.clicked.connect(self.login_handler)
         self.ui.signUp.clicked.connect(self.register_handler)
@@ -19,22 +21,27 @@ class LoginLogic(QWidget):
     def login_handler(self):
         username = self.ui.userName.text()
         password = self.ui.password.text()
+        # Implementera inloggningslogik här
 
     def register_handler(self):
-        print("Sign Up button clicked!") 
+        print("Connecting to database...")
+        self.db_manager.connect()
+        print("Connected to database!")
+    
         username = self.ui.userName.text()
         password = self.ui.password.text()
-        
-        print("Username:", username)
-        print("Password:", password)
 
         if username and password:
-            print("Both fields are filled.")
- 
-            QMessageBox.information(self, "Registration", "Registration successful!")
+            if not self.db_manager.check_username_exists(username):
+            # Om användarnamnet inte redan finns, spara det i databasen
+                self.db_manager.execute_query(f"INSERT INTO users (username, password) VALUES ('{username}', '{password}')")
+                QMessageBox.information(self, "Registration", "Registration successful!")
+            else:
+            # Om användarnamnet redan finns, visa varning
+                QMessageBox.warning(self, "Registration", "Username already exists. Please choose a different username.")
         else:
-            print("One or both fields are empty.")
             QMessageBox.warning(self, "Registration", "Please enter both username and password.")
+
 
     def continue_as_guest_handler(self):
         if not self.guest_view:
