@@ -117,7 +117,7 @@ class Ui_stress(QtWidgets.QDialog):
         self.image_label.setObjectName("label_3")
         self.text_label = QtWidgets.QLabel(self.stress)
         self.text_label.setGeometry(QtCore.QRect(30, 80, 381, 161))
-        self.text_label.setStyleSheet("background-color: rgb(242, 217, 170); font-size: 14pt;")
+        self.text_label.setStyleSheet("background-color: rgb(242, 217, 170); font-size: 12pt;")
         self.text_label.setText("")
         self.text_label.setObjectName("label_4")
         self.text_label.setWordWrap(True)

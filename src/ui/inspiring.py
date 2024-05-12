@@ -119,7 +119,7 @@ class Ui_inspiring(QtWidgets.QDialog):
         self.quotes.setWordWrap(True)
         self.author = QtWidgets.QLabel(self.frame)
         self.author.setGeometry(QtCore.QRect(410, 220, 121, 21))
-        self.author.setStyleSheet("background-color: rgb(242, 217, 170); font-size: 14pt;")
+        self.author.setStyleSheet("background-color: rgb(242, 217, 170); font-size: 12pt;")
         self.author.setText("")
         self.author.setObjectName("author")
         self.set_quote(self.functions.current_quote())
