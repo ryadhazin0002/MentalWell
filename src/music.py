@@ -96,3 +96,28 @@ class MusicPlayer:
         folder = music_path
         for i in os.listdir(folder):
             cls.songs.append(f'{folder}\\{i}')
+
+
+class Track:
+    def getAllTracks(self):
+        """
+        Song Name				Author Name			Address
+	            				Andres, Daniel		..\\Music\\AAndres_Song.mp3
+        Arie					Lena Raine			..\\Music\\C418 - Cat - Minecraft Volume Alpha.mp3
+        Cat					    C418				..\\Music\\C418 - Dog - Minecraft Volume Alpha.mp3
+        Dog					    C418				..\\Music\\C418 - Droopy likes Ricochet - Minecraft Volume Alpha.mp3
+        Droopy likes Ricochet	C418				..\\Music\\C418 - Dry Hands - Minecraft Volume Alpha.mp3
+
+        Dry Hands				C418				..\\Music\\C418 - Haggstrom - Minecraft Volume Alpha.mp3
+        Haggstrom				C418				..\\Music\\C418 - Living Mice - Minecraft Volume Alpha.mp3
+        Living Mice				C418				..\\Music\\C418 - Mice on Venus - Minecraft Volume Alpha.mp3
+        Minecraft				C418				..\\Music\\C418 - Minecraft - Minecraft Volume Alpha.mp3
+
+        Moog City				C418				..\\Music\\C418 - Moog City - Minecraft Volume Alpha.mp3
+        Sweden 					C418				..\\Music\\C418 - Sweden - Minecraft Volume Alpha.mp3
+        Wet Hands				C418				..\\Music\\C418 - Wet Hands - Minecraft Volume Alpha.mp3
+        Firebugs				Lena Raine			..\\Music\\Firebugs.mp3
+
+        Moog City 2				C418				..\\Music\\Minecraft Volume Beta - Moog City 2.mp3
+        """
+        pass
