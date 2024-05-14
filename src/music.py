@@ -3,12 +3,14 @@ import os
 import threading
 
 from config import music_path
+from src.connect_to_database import DatabaseManager
+from config import root_dir
+from src.Track import Track
 
 
 class MusicPlayer:
     pygame.init()
     music = pygame.mixer.music
-    songs = []
     play_button = False
     auto_play_thread = True
     create_thread = True  # Creates 1 thread that lasts the time program runs... deleting and recreating causes issues
@@ -36,10 +38,9 @@ class MusicPlayer:
         if cls.create_thread is True:
             cls.activate_thread()
 
-        cls.music.load(cls.songs[cls.song_tracker])
+        cls.music.load(cls.get_all()[cls.song_tracker].musicPath)
         cls.music.play()
         cls.music.set_endevent(cls.END_OF_SONG)
-
 
     @classmethod
     def stop_music(cls):  # Exits the window SHOULD stop thread too
@@ -47,13 +48,11 @@ class MusicPlayer:
         cls.auto_play_thread = False
         cls.music.stop()
 
-
     @classmethod
     def change_song(cls, num):
         cls.song_tracker = num
-        cls.music.load(cls.songs[cls.song_tracker])
+        cls.music.load(cls.get_all()[cls.song_tracker].musicPath)
         cls.play_music()
-
 
     @classmethod
     def next_song(cls):
@@ -69,7 +68,7 @@ class MusicPlayer:
 
     @classmethod
     def update_song(cls):
-        cls.song_tracker %= len(cls.songs)
+        cls.song_tracker %= len(cls.get_all())
         cls.play_music()
 
 
@@ -92,32 +91,16 @@ class MusicPlayer:
 
 
     @classmethod
-    def load_song_path(cls):
-        folder = music_path
-        for i in os.listdir(folder):
-            cls.songs.append(f'{folder}\\{i}')
+    def get_all(cls) -> list[Track]:    # Load from DB
+        result = DatabaseManager().execute_query("SELECT * FROM music_list;")
+        if result is not None:
+            data = []
+            for item in result:
+                data.append(Track(item[0], item[1], item[2], item[3], root_dir + item[4]))
+            return data
+        return []
 
-
-class Track:
-    def getAllTracks(self):
-        """
-        Song Name				Author Name			Address
-	            				Andres, Daniel		..\\Music\\AAndres_Song.mp3
-        Arie					Lena Raine			..\\Music\\C418 - Cat - Minecraft Volume Alpha.mp3
-        Cat					    C418				..\\Music\\C418 - Dog - Minecraft Volume Alpha.mp3
-        Dog					    C418				..\\Music\\C418 - Droopy likes Ricochet - Minecraft Volume Alpha.mp3
-        Droopy likes Ricochet	C418				..\\Music\\C418 - Dry Hands - Minecraft Volume Alpha.mp3
-
-        Dry Hands				C418				..\\Music\\C418 - Haggstrom - Minecraft Volume Alpha.mp3
-        Haggstrom				C418				..\\Music\\C418 - Living Mice - Minecraft Volume Alpha.mp3
-        Living Mice				C418				..\\Music\\C418 - Mice on Venus - Minecraft Volume Alpha.mp3
-        Minecraft				C418				..\\Music\\C418 - Minecraft - Minecraft Volume Alpha.mp3
-
-        Moog City				C418				..\\Music\\C418 - Moog City - Minecraft Volume Alpha.mp3
-        Sweden 					C418				..\\Music\\C418 - Sweden - Minecraft Volume Alpha.mp3
-        Wet Hands				C418				..\\Music\\C418 - Wet Hands - Minecraft Volume Alpha.mp3
-        Firebugs				Lena Raine			..\\Music\\Firebugs.mp3
-
-        Moog City 2				C418				..\\Music\\Minecraft Volume Beta - Moog City 2.mp3
-        """
-        pass
+    @classmethod
+    def get_song_tracker(cls):
+        print(cls.song_tracker)
+        return cls.song_tracker

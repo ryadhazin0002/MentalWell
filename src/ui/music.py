@@ -13,7 +13,6 @@ import src.music  # my code
 from config import logo_path
 
 music_player = src.music.MusicPlayer  # my code
-music_player.load_song_path()
 
 
 class Ui_Music(object):
