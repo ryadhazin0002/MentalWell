@@ -78,6 +78,14 @@ class MusicPlayer:
                         self.next_song()
                         print("Next song")
 
+    def is_playing(self):
+        """
+        Check if music is currently playing.
+        Returns:
+            bool: True if music is playing, False otherwise.
+        """
+        return self.music.get_busy()
+
 
     def load_song_path(self):
         #folder = music_path

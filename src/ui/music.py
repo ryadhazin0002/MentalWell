@@ -9,10 +9,13 @@ import pygame.mixer
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import QSize, Qt
 
 from src.Track import TrackFunctions, Track
 from src.music import MusicPlayer  # my code
-from config import logo_path
+from config import logo_path, music_picture_path
+from PyQt5.QtGui import QMovie
 
 music_player = MusicPlayer() # my code
 
@@ -169,11 +172,11 @@ class Ui_Music(object):
                                             "}")
         self.next_song_button.setObjectName("next_song_button")
         self.list_label = QtWidgets.QLabel(self.frame)
-        self.list_label.setGeometry(QtCore.QRect(120, 90, 371, 101))
+        self.list_label.setGeometry(QtCore.QRect(75, 74, 287, 130))
         self.list_label.setAlignment(QtCore.Qt.AlignCenter)
         self.list_label.setStyleSheet("font-size: 24pt;")
         self.list_label.setStyleSheet("\n"
-                                      "background-color: rgb(255, 170, 255);font-size: 24pt;")
+                                      "background-color: rgb(255, 170, 255);font-size: 12pt;")
         self.list_label.setText("")
         self.list_label.setObjectName("list_label")
         self.set_track(self.functions.current_track())
@@ -181,6 +184,18 @@ class Ui_Music(object):
         self.retranslateUi(inspiring)
         self.button_functions()  # my code
         QtCore.QMetaObject.connectSlotsByName(inspiring)
+        self.image = QtWidgets.QLabel(self.frame)
+        self.image.setScaledContents(True)
+        self.image.setGeometry(QtCore.QRect(350, 74, 185, 130))
+        self.image.setStyleSheet("background-color: rgb(255, 170, 255);")
+        self.image.setText("")
+        self.image.setObjectName("image")
+        self.movie = QMovie(music_picture_path)
+        self.image.setMovie(self.movie)
+        self.movie.start()
+        self.movie.stop()
+        self.play_button.clicked.connect(self.toggle_movie)
+
 
 
     def retranslateUi(self, inspiring):
@@ -195,6 +210,9 @@ class Ui_Music(object):
         self.next_song_button.setText(_translate("inspiring", "▷|"))
 
 
+
+
+
     def button_functions(self):  # My code
         self.play_button.clicked.connect(music_player.play_logic)
         self.next_song_button.clicked.connect(self.on_next_pressed)
@@ -203,8 +221,10 @@ class Ui_Music(object):
 
 
     def set_track(self, track: Track):
-        if track != None:
+        if track is not None:
             self.list_label.setText(f'{track.name}\n{track.author}')
+
+
 
     def on_next_pressed(self):
         track = self.functions.next_track()
@@ -215,6 +235,15 @@ class Ui_Music(object):
         track = self.functions.previous_track()
         self.set_track(track)
         music_player.prev_song()
+
+    def toggle_movie(self):
+        if music_player.is_playing():  # Assuming you have a method is_playing() to check if music is playing
+            if self.movie.state() == QMovie.NotRunning:
+                self.movie.start()
+            else:
+                self.movie.stop()
+        else:
+            self.movie.stop()
 
 
 
