@@ -1,106 +1,82 @@
+import time
+
 import pygame
 import os
 import threading
 
 from config import music_path
-from src.connect_to_database import DatabaseManager
-from config import root_dir
-from src.Track import Track
 
 
 class MusicPlayer:
-    pygame.init()
-    music = pygame.mixer.music
-    play_button = False
-    auto_play_thread = True
-    create_thread = True  # Creates 1 thread that lasts the time program runs... deleting and recreating causes issues
-    song_tracker = 0
-    END_OF_SONG = pygame.USEREVENT + 1
+    def __init__(self):
+        pygame.init()
+        self.music = pygame.mixer.music
+        self.songs = []
+        self.play_button = False
+        self.auto_play_thread = True
+        self.song_tracker = 0
+        self.END_OF_SONG = pygame.USEREVENT + 1
+        self.load_song_path()
+
+        self.end_song_thread = threading.Thread(target=self.auto_skip, daemon=True)
+        self.end_song_thread.start()
 
 
-    @classmethod
-    def play_logic(cls):
-        match cls.play_button:
+    def play_logic(self):
+        match self.play_button:
             case False:
-                cls.play_music()
+                self.play_music()
+
             case True:
-                if cls.music.get_busy() is True:
-                    cls.music.pause()
+                if self.music.get_busy() is True:
+                    self.music.pause()
                 else:
-                    cls.music.unpause()
+                    self.music.unpause()
 
 
-    @classmethod
-    def play_music(cls):
-        if cls.play_button is False:
-            cls.play_button = True
-            cls.auto_play_thread = True
-        if cls.create_thread is True:
-            cls.activate_thread()
+    def play_music(self):
+        if self.play_button is False:
+            self.play_button = True
+            self.auto_play_thread = True
 
-        cls.music.load(cls.get_all()[cls.song_tracker].musicPath)
-        cls.music.play()
-        cls.music.set_endevent(cls.END_OF_SONG)
-
-    @classmethod
-    def stop_music(cls):  # Exits the window SHOULD stop thread too
-        cls.play_button = False
-        cls.auto_play_thread = False
-        cls.music.stop()
-
-    @classmethod
-    def change_song(cls, num):
-        cls.song_tracker = num
-        cls.music.load(cls.get_all()[cls.song_tracker].musicPath)
-        cls.play_music()
-
-    @classmethod
-    def next_song(cls):
-        cls.song_tracker += 1
-        cls.update_song()
+        self.music.load(self.songs[self.song_tracker])
+        self.music.play()
+        self.music.set_endevent(self.END_OF_SONG)
 
 
-    @classmethod
-    def prev_song(cls):
-        cls.song_tracker -= 1
-        cls.update_song()
 
 
-    @classmethod
-    def update_song(cls):
-        cls.song_tracker %= len(cls.get_all())
-        cls.play_music()
+    def change_song(self, num):
+        self.song_tracker = num
+        self.music.load(self.songs[self.song_tracker])
+        self.play_music()
 
 
-    @classmethod
-    def auto_skip(cls):
+    def next_song(self):
+        self.song_tracker += 1
+        self.update_song()
+
+
+    def prev_song(self):
+        self.song_tracker -= 1
+        self.update_song()
+
+
+    def update_song(self):
+        self.song_tracker %= len(self.songs)
+        self.play_music()
+
+
+    def auto_skip(self):
         while True:
-            while cls.auto_play_thread:
-                if cls.music.get_busy() is False:
-                    for _ in pygame.event.get():
-                        if cls.music.get_endevent() == cls.END_OF_SONG and not cls.music.get_busy():
-                            cls.next_song()
-                            print("Next song")
+            while self.auto_play_thread:
+                for _ in pygame.event.get():
+                    if self.music.get_endevent() == self.END_OF_SONG and not self.music.get_busy():
+                        self.next_song()
+                        print("Next song")
 
 
-    @classmethod
-    def activate_thread(cls):
-        cls.create_thread = False
-        end_song_thread = threading.Thread(target=cls.auto_skip, daemon=True)
-        end_song_thread.start()
-
-
-    @classmethod
-    def get_all(cls) -> list[Track]:    # Load from DB
-        result = DatabaseManager().execute_query("SELECT * FROM music_list;")
-        if result is not None:
-            data = []
-            for item in result:
-                data.append(Track(item[0], item[1], item[2], item[3], root_dir + item[4]))
-            return data
-        return []
-
-    @classmethod
-    def get_song_tracker(cls):
-        print(cls.song_tracker)
-        return cls.song_tracker
+    def load_song_path(self):
+        folder = music_path
+        for i in os.listdir(folder):
+            self.songs.append(f'{folder}\\{i}')
