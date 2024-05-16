@@ -5,21 +5,24 @@ import os
 import threading
 
 from config import music_path
+from src.Track import TrackFunctions
 
 
 class MusicPlayer:
     def __init__(self):
         pygame.init()
         self.music = pygame.mixer.music
+        self.track_functions = TrackFunctions()
         self.songs = []
         self.play_button = False
         self.auto_play_thread = True
         self.song_tracker = 0
         self.END_OF_SONG = pygame.USEREVENT + 1
         self.load_song_path()
-
         self.end_song_thread = threading.Thread(target=self.auto_skip, daemon=True)
         self.end_song_thread.start()
+
+
 
 
     def play_logic(self):
@@ -77,6 +80,8 @@ class MusicPlayer:
 
 
     def load_song_path(self):
-        folder = music_path
-        for i in os.listdir(folder):
-            self.songs.append(f'{folder}\\{i}')
+        #folder = music_path
+        for i in self.track_functions.tracks:
+            self.songs.append(i.musicPath)
+        #for i in os.listdir(folder):
+            #self.songs.append(f'{folder}\\{i}')

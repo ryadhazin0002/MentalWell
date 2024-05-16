@@ -9,6 +9,8 @@ import pygame.mixer
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+from src.Track import TrackFunctions, Track
 from src.music import MusicPlayer  # my code
 from config import logo_path
 
@@ -18,6 +20,7 @@ class Ui_Music(object):
 
     def __init__(self, parent_page) -> None:
         super().__init__()
+        self.functions = music_player.track_functions
         self.parent_page = parent_page
     def setupUi(self, inspiring):
         inspiring.setObjectName("inspiring")
@@ -167,10 +170,13 @@ class Ui_Music(object):
         self.next_song_button.setObjectName("next_song_button")
         self.list_label = QtWidgets.QLabel(self.frame)
         self.list_label.setGeometry(QtCore.QRect(120, 90, 371, 101))
+        self.list_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.list_label.setStyleSheet("font-size: 24pt;")
         self.list_label.setStyleSheet("\n"
-                                      "background-color: rgb(255, 170, 255);")
+                                      "background-color: rgb(255, 170, 255);font-size: 24pt;")
         self.list_label.setText("")
         self.list_label.setObjectName("list_label")
+        self.set_track(self.functions.current_track())
 
         self.retranslateUi(inspiring)
         self.button_functions()  # my code
@@ -191,8 +197,25 @@ class Ui_Music(object):
 
     def button_functions(self):  # My code
         self.play_button.clicked.connect(music_player.play_logic)
-        self.next_song_button.clicked.connect(music_player.next_song)
-        self.prev_song_button.clicked.connect(music_player.prev_song)
+        self.next_song_button.clicked.connect(self.on_next_pressed)
+        self.prev_song_button.clicked.connect(self.on_back_pressed)
+
+
+
+    def set_track(self, track: Track):
+        if track != None:
+            self.list_label.setText(f'{track.name}\n{track.author}')
+
+    def on_next_pressed(self):
+        track = self.functions.next_track()
+        self.set_track(track)
+        music_player.next_song()
+
+    def on_back_pressed(self):
+        track = self.functions.previous_track()
+        self.set_track(track)
+        music_player.prev_song()
+
 
 
 
