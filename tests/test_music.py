@@ -1,18 +1,17 @@
 import os
 import unittest
-from src.music import Music
-from src.music import SongCollection
+from src.music import MusicPlayer
 
 
 class testMusic(unittest.TestCase):
     def setUp(self):
-        self.music = Music()
+        self.music = MusicPlayer()
         self.song_dir = "..\\Music\\"
         self.song_list = [self.song_dir + song for song in os.listdir(self.song_dir)]
 
 
     def teardown(self):
-        self.music = Music()
+        self.music = MusicPlayer()
         self.song_dir = "..\\Music\\"
         self.song_list = [self.song_dir + song for song in os.listdir(self.song_dir)]
 
@@ -38,24 +37,6 @@ class testMusic(unittest.TestCase):
             self.music.prev_song()
 
 
-class TestMusicCollection(unittest.TestCase):
-    def setUp(self):
-        self.musicPath = SongCollection().musicPath
-        self.music = Music()
-        self.song_dir = "..\\Music\\"
-        self.song_list = [self.song_dir + song for song in os.listdir(self.song_dir)]
-
-
-    def tearDown(self):
-        self.musicPath = SongCollection().musicPath
-        self.music = Music()
-        self.song_dir = "..\\Music\\"
-        self.song_list = [self.song_dir + song for song in os.listdir(self.song_dir)]
-
-
-    def test_music_path_items(self):
-        for i in range(len(self.song_list)):
-            self.assertEqual(self.song_list[i], self.musicPath[i])
 
 
 if __name__ == '__main__':

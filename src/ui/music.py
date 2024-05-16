@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import pygame.mixer
 # Form implementation generated from reading ui file 'music.ui'
 #
 # Created by: PyQt5 ui code generator 5.15.10
@@ -9,12 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import src.music  # my code
+from src.music import MusicPlayer  # my code
 from config import logo_path
 
-music_player = src.music.MusicPlayer  # my code
-music_player.load_song_path()
-
+music_player = MusicPlayer() # my code
 
 class Ui_Music(object):
 
@@ -90,6 +88,8 @@ class Ui_Music(object):
                 self.parent_page.setupUi(window)
                 window.show()
                 inspiring.close()
+
+
         self.MainMenu.clicked.connect(on_main_menu_clicked)
         self.MainMenu.setGeometry(QtCore.QRect(410, 280, 161, 31))
         font = QtGui.QFont()
@@ -193,7 +193,7 @@ class Ui_Music(object):
         self.play_button.clicked.connect(music_player.play_logic)
         self.next_song_button.clicked.connect(music_player.next_song)
         self.prev_song_button.clicked.connect(music_player.prev_song)
-        self.MainMenu.clicked.connect(music_player.stop_music)
+
 
 
 if __name__ == "__main__":

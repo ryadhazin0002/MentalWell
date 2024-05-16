@@ -1,3 +1,5 @@
+import time
+
 import pygame
 import os
 import threading
@@ -6,118 +8,75 @@ from config import music_path
 
 
 class MusicPlayer:
-    pygame.init()
-    music = pygame.mixer.music
-    songs = []
-    play_button = False
-    auto_play_thread = True
-    create_thread = True  # Creates 1 thread that lasts the time program runs... deleting and recreating causes issues
-    song_tracker = 0
-    END_OF_SONG = pygame.USEREVENT + 1
+    def __init__(self):
+        pygame.init()
+        self.music = pygame.mixer.music
+        self.songs = []
+        self.play_button = False
+        self.auto_play_thread = True
+        self.song_tracker = 0
+        self.END_OF_SONG = pygame.USEREVENT + 1
+        self.load_song_path()
+
+        self.end_song_thread = threading.Thread(target=self.auto_skip, daemon=True)
+        self.end_song_thread.start()
 
 
-    @classmethod
-    def play_logic(cls):
-        match cls.play_button:
+    def play_logic(self):
+        match self.play_button:
             case False:
-                cls.play_music()
+                self.play_music()
+
             case True:
-                if cls.music.get_busy() is True:
-                    cls.music.pause()
+                if self.music.get_busy() is True:
+                    self.music.pause()
                 else:
-                    cls.music.unpause()
+                    self.music.unpause()
 
 
-    @classmethod
-    def play_music(cls):
-        if cls.play_button is False:
-            cls.play_button = True
-            cls.auto_play_thread = True
-        if cls.create_thread is True:
-            cls.activate_thread()
+    def play_music(self):
+        if self.play_button is False:
+            self.play_button = True
+            self.auto_play_thread = True
 
-        cls.music.load(cls.songs[cls.song_tracker])
-        cls.music.play()
-        cls.music.set_endevent(cls.END_OF_SONG)
+        self.music.load(self.songs[self.song_tracker])
+        self.music.play()
+        self.music.set_endevent(self.END_OF_SONG)
 
 
-    @classmethod
-    def stop_music(cls):  # Exits the window SHOULD stop thread too
-        cls.play_button = False
-        cls.auto_play_thread = False
-        cls.music.stop()
 
 
-    @classmethod
-    def change_song(cls, num):
-        cls.song_tracker = num
-        cls.music.load(cls.songs[cls.song_tracker])
-        cls.play_music()
+    def change_song(self, num):
+        self.song_tracker = num
+        self.music.load(self.songs[self.song_tracker])
+        self.play_music()
 
 
-    @classmethod
-    def next_song(cls):
-        cls.song_tracker += 1
-        cls.update_song()
+    def next_song(self):
+        self.song_tracker += 1
+        self.update_song()
 
 
-    @classmethod
-    def prev_song(cls):
-        cls.song_tracker -= 1
-        cls.update_song()
+    def prev_song(self):
+        self.song_tracker -= 1
+        self.update_song()
 
 
-    @classmethod
-    def update_song(cls):
-        cls.song_tracker %= len(cls.songs)
-        cls.play_music()
+    def update_song(self):
+        self.song_tracker %= len(self.songs)
+        self.play_music()
 
 
-    @classmethod
-    def auto_skip(cls):
+    def auto_skip(self):
         while True:
-            while cls.auto_play_thread:
-                if cls.music.get_busy() is False:
-                    for _ in pygame.event.get():
-                        if cls.music.get_endevent() == cls.END_OF_SONG and not cls.music.get_busy():
-                            cls.next_song()
-                            print("Next song")
+            while self.auto_play_thread:
+                for _ in pygame.event.get():
+                    if self.music.get_endevent() == self.END_OF_SONG and not self.music.get_busy():
+                        self.next_song()
+                        print("Next song")
 
 
-    @classmethod
-    def activate_thread(cls):
-        cls.create_thread = False
-        end_song_thread = threading.Thread(target=cls.auto_skip, daemon=True)
-        end_song_thread.start()
-
-
-    @classmethod
-    def load_song_path(cls):
+    def load_song_path(self):
         folder = music_path
         for i in os.listdir(folder):
-            cls.songs.append(f'{folder}\\{i}')
-
-
-class Track:
-    def getAllTracks(self):
-        """
-        Song Name				Author Name			Address
-	            				Andres, Daniel		..\\Music\\AAndres_Song.mp3
-        Arie					Lena Raine			..\\Music\\C418 - Cat - Minecraft Volume Alpha.mp3
-        Cat					    C418				..\\Music\\C418 - Dog - Minecraft Volume Alpha.mp3
-        Dog					    C418				..\\Music\\C418 - Droopy likes Ricochet - Minecraft Volume Alpha.mp3
-        Droopy likes Ricochet	C418				..\\Music\\C418 - Dry Hands - Minecraft Volume Alpha.mp3
-
-        Dry Hands				C418				..\\Music\\C418 - Haggstrom - Minecraft Volume Alpha.mp3
-        Haggstrom				C418				..\\Music\\C418 - Living Mice - Minecraft Volume Alpha.mp3
-        Living Mice				C418				..\\Music\\C418 - Mice on Venus - Minecraft Volume Alpha.mp3
-        Minecraft				C418				..\\Music\\C418 - Minecraft - Minecraft Volume Alpha.mp3
-
-        Moog City				C418				..\\Music\\C418 - Moog City - Minecraft Volume Alpha.mp3
-        Sweden 					C418				..\\Music\\C418 - Sweden - Minecraft Volume Alpha.mp3
-        Wet Hands				C418				..\\Music\\C418 - Wet Hands - Minecraft Volume Alpha.mp3
-        Firebugs				Lena Raine			..\\Music\\Firebugs.mp3
-
-        Moog City 2				C418				..\\Music\\Minecraft Volume Beta - Moog City 2.mp3
-        """
-        pass
+            self.songs.append(f'{folder}\\{i}')

@@ -8,3 +8,4 @@ root_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = root_dir + '\\MentalWell.db'
 music_path = root_dir + '\\Music'
 logo_path = root_dir + '\\images\\logo.png'
+
